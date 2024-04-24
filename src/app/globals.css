@@ -6,6 +6,10 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  /*--primary: #7953be;
+  --secondary: #4e5166;
+  --tertiary: #c9ffdd;
+  --quaternary: #ffc4d8;*/
 }
 
 @media (prefers-color-scheme: dark) {
@@ -24,6 +28,23 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+  --scroll-behavior: smooth !important;
+  scroll-behavior: smooth !important;
+  /*font-family: var(--custom-font-ysabeau0);*/
+}
+
+@layer base {
+  /* base font size in percentage then change font-size and some other values to rem for browser font-size change to work */
+  /* 1rem = 16px and 100% = 16px so 62.5% = 10px, and with 62.5% (10px) then 2rem = 20px */
+  html {
+    @apply w-screen h-full text-[62.5%];
+  }
+  body {
+    @apply w-screen min-h-screen flex flex-col text-[1.2rem];
+  }
+}
+
+@layer components {
 }
 
 @layer utilities {
