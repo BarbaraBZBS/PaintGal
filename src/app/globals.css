@@ -30,7 +30,7 @@ body {
     rgb(var(--background-start-rgb));
   --scroll-behavior: smooth !important;
   scroll-behavior: smooth !important;
-  /*font-family: var(--custom-font-ysabeau0);*/
+  font-family: var(--custom-font-ysabeau0);
 }
 
 @layer base {
@@ -40,7 +40,7 @@ body {
     @apply w-screen h-full text-[62.5%];
   }
   body {
-    @apply w-screen min-h-screen flex flex-col text-[1.2rem];
+    @apply w-screen min-h-full grid grid-rows-[auto_1fr_auto] text-[1.3rem];
   }
 }
 

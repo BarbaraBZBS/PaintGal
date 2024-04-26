@@ -2,11 +2,22 @@
   "plugins": ["@typescript-eslint"],
   "extends": [
     "next/core-web-vitals",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/eslint-recommended"
   ],
   "rules": {
     "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/no-explicit-any": "error",
     "prefer-const": "off"
   }
+  //"overrides": [
+  //  {
+  //    "files": ["*.js", "*.jsx"],
+  //    "extends": ["plugin:@typescript-eslint/disable-type-checked"]
+  //  }
+  //],
+  //"ignorePatterns": ["config", "models", "_actions"]
 }
+
+/* or add in files */
+/* eslint-disable */
