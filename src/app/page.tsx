@@ -1,7 +1,10 @@
 import Image from "next/image";
 import gallery from "@/public/images/paintgalhome.jpg";
+import Showcase from "./components/showcase";
 
 export default async function Home() {
+  //either pagination or sort paintings by category in carousel
+  //or add in db categories array
   return (
     <main className="">
       <Image
@@ -13,6 +16,10 @@ export default async function Home() {
         priority
         className="rounded-lg m-auto"
       />
+
+      {/* add images but with pagination? */}
+
+      <Showcase />
     </main>
   );
 }
