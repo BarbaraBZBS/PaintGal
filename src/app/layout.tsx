@@ -4,6 +4,7 @@ import "./globals.css";
 import { ysabeauO } from "./font";
 import Header from "@src/app/components/header";
 import Footer from "@src/app/components/footer";
+import ThemesProvider from "@src/app/components/ThemeProvider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -27,10 +28,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      {/* suppressHydrationWarning? */}
       <body className={ysabeauO.className}>
-        <Header />
-        {children}
-        <Footer />
+        <ThemesProvider>
+          <Header />
+          {children}
+          <Footer />
+        </ThemesProvider>
       </body>
     </html>
   );

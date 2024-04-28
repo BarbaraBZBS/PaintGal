@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import Button from "@src/app/components/button";
+import SubmitButton from "@src/app/components/submitButton";
 
 export default function AddPaintingForm() {
   const [file, setFile] = useState<File>();
@@ -133,7 +133,7 @@ export default function AddPaintingForm() {
           name="image"
           onChange={(e) => setFile(e.target.files?.[0])}
         />
-        <Button isDisabled={isDisabled}>Add</Button>
+        <SubmitButton isDisabled={isDisabled}>Add</SubmitButton>
       </form>
     </div>
   );

@@ -14,20 +14,20 @@ export default async function Showcase() {
   const paintings = await fetchPaintings();
 
   return (
-    <div>
-      <h1>Paintings</h1>
+    <div className="grid justify-items-center my-[3rem]">
       {paintings.map((paint: IPainting, index: number) => (
         <div
           key={index}
-          className="grid"
+          className="grid grid-cols-1 grid-rows-[repeat(1,61vw)] w-[84vw] h-[22rem]"
         >
           <Image
             src={paint.image}
             alt={`${paint.name}`}
-            width={300}
-            height={100}
+            width={0}
+            height={0}
             priority
             placeholder="empty"
+            className="w-full max-h-full rounded-xl object-cover"
           />
         </div>
       ))}

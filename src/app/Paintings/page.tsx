@@ -1,6 +1,7 @@
 import React from "react";
 import { IPainting } from "../models/painting";
 
+//admin page
 export default async function Paintings() {
   const fetchPaintings = async () => {
     const res = await fetch(process.env.NEXT_PUBLIC_API + "/paintings", {

@@ -2,10 +2,11 @@ import React from "react";
 import logo from "@public/images/logonobg.png";
 import Image from "next/image";
 import Link from "next/link";
+import ThemeButton from "./themeButton";
 
 export default function Header() {
   return (
-    <nav className="grid grid-cols-[70%_30%] text-[1.2rem] h-[5rem] mb-[1rem]">
+    <nav className="grid grid-cols-[70%_10%_20%] text-[1.2rem] h-[5rem] mb-[1rem]">
       <div className="self-center mx-[2rem]">
         <Link href="/">
           <Image
@@ -19,6 +20,9 @@ export default function Header() {
           />
         </Link>
       </div>
+      <ThemeButton />
+
+      {/* menu button for mobile and tablet */}
       <ul className="grid justify-items-end mx-[2rem]">
         <li className="self-center">
           <Link href="/">Home</Link>

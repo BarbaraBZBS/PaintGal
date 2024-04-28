@@ -10,6 +10,7 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: "class",
   theme: {
     extend: {
       backgroundImage: {
@@ -258,6 +259,7 @@ const config: Config = {
       pgnavy: "#15278d",
       pgblue: "#595cc3",
       pgmauve: "#d6b3ed",
+      pgseethrough: "rgba(255, 255, 255, 0.4)",
     },
   },
   plugins: [
