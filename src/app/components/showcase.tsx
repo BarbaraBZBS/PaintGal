@@ -18,7 +18,7 @@ export default async function Showcase() {
       {paintings.map((paint: IPainting, index: number) => (
         <div
           key={index}
-          className="grid grid-cols-1 grid-rows-[repeat(1,61vw)] w-[84vw] h-[22rem]"
+          className="grid grid-cols-1 grid-rows-[repeat(1,20rem)] w-[84vw] h-[22.5rem]"
         >
           <Image
             src={paint.image}
