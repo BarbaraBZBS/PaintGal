@@ -84,7 +84,7 @@ export const AuthLog: React.FC<OpenProp> = ({ toggle, isOpen }) => {
         </button>
       </div>
       {isOpen && (
-        <div className="h-[10rem] w-[20vw] right-[2.5vw] grid absolute place-items-center rounded-b-lg text-[1.3rem]">
+        <ul className="h-[10rem] w-[20vw] right-[2.5vw] grid absolute place-items-center rounded-b-lg text-[1.3rem]">
           <motion.li
             variants={linkVariants}
             whileHover={{ scale: 1.1 }}
@@ -120,7 +120,7 @@ export const AuthLog: React.FC<OpenProp> = ({ toggle, isOpen }) => {
               <Link href="/Logout">Logout</Link>
             </motion.li>
           )}
-        </div>
+        </ul>
       )}
     </>
   );

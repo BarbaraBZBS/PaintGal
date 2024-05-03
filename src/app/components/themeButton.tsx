@@ -30,13 +30,13 @@ export default function ThemeButton() {
         title={
           resolvedTheme === "dark" ? "Toggle Light Mode" : "Toggle Dark Mode"
         }
-        data-isOn={resolvedTheme}
-        className={`flex justify-start bg-pgseethrough rounded-[5rem] p-[0.25rem] w-[2.8rem] h-[2rem] cursor-pointer data-[isOn=light]:justify-end data-[isOn=light]:bg-pgmauve`}
+        data-ison={resolvedTheme}
+        className={`flex justify-start bg-pgseethrough rounded-[5rem] p-[0.25rem] w-[2.8rem] h-[2rem] cursor-pointer data-[ison=light]:justify-end data-[ison=light]:bg-pgmauve`}
         onClick={toggleSwitch}
       >
         <motion.div
-          data-isOn={resolvedTheme}
-          className="bg-white rounded-[4rem] w-[1.5rem] h-[1.5rem] data-[isOn=light]:bg-pgblue"
+          data-ison={resolvedTheme}
+          className="bg-white rounded-[4rem] w-[1.5rem] h-[1.5rem] data-[ison=light]:bg-pgblue"
           layout
           transition={spring}
           whileHover={{ scale: 1.2 }}

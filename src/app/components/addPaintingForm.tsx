@@ -1,10 +1,10 @@
 "use client";
-
 import React, { useState } from "react";
 import SubmitButton from "@src/app/components/submitButton";
+import FileResizer from "react-image-file-resizer";
 
 export default function AddPaintingForm() {
-  const [file, setFile] = useState<File>();
+  const [fileUrl, setFileUrl] = useState<File | undefined>();
   const [state, setState] = useState();
   const [name, setName] = useState<string>("");
   const [artist, setArtist] = useState<string>("");
@@ -12,14 +12,104 @@ export default function AddPaintingForm() {
   const [description, setDescription] = useState<string>("");
   const [price, setPrice] = useState<string>("");
   const [onSale, setOnSale] = useState<boolean>(false);
-  const isDisabled = !file || !name || !artist || !category || !price;
+  const isDisabled = !fileUrl || !name || !artist || !category || !price;
+
+  //JPEG?? or WEBP or PNG??
+  const resizeFile = (file: File) =>
+    new Promise((resolve) => {
+      FileResizer.imageFileResizer(
+        file,
+        500,
+        500,
+        "JPEG",
+        50,
+        0,
+        (uri) => {
+          resolve(uri);
+        },
+        "file",
+        500,
+        500
+      );
+    });
+
+  const getImg = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    try {
+      if (
+        event.currentTarget.files &&
+        event.currentTarget.files[0].type === "image/gif"
+      ) {
+        setFileUrl(undefined);
+        return alert("Gif file is not allowed");
+      } else if (
+        event.currentTarget.files &&
+        !event.currentTarget.files[0].type.startsWith("image/")
+      ) {
+        setFileUrl(undefined);
+        return alert("Only images are allowed");
+      } else {
+        if (event.currentTarget.files && event.currentTarget.files.length > 0) {
+          const picked = event.currentTarget.files[0];
+          //console.log("resize file : ", picked);
+          const img: File = (await resizeFile(picked)) as unknown as File;
+          //console.log("img?????", img);
+          //console.log(typeof img);
+          setFileUrl(img);
+        }
+      }
+      console.log("final???", fileUrl);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  //useEffect(() => {
+  //  if (fileUrl) {
+  //    resizeFile(fileUrl);
+  //    setResized(fileUrl);
+  //  }
+
+  //const resizeFile = (fileUrl: File) => {
+  //  FileResizer.imageFileResizer(
+  //
+  //    fileUrl,
+  //    360,
+  //    240,
+  //    "WEBP",
+  //    100,
+  //    0,
+  //    (uri: string | Blob | File | ProgressEvent<FileReader>) => {
+  //      console.log(uri.File)
+  //    }, "file", 360,
+  //    240
+  //  );
+  //};
+  //const resizeFile = (file: File) =>
+  //  new Promise((resolve) => {
+  //    FileResizer.imageFileResizer(
+  //      file,
+  //      360,
+  //      240,
+  //      "WEBP",
+  //      50,
+  //      0,
+  //      (fileUri) => {
+  //        resolve(fileUri);
+  //      },
+  //      "base64",
+  //      360,
+  //      240
+  //    );
+  //  });
+  //const img = await resizeFile(file);
+  //console.log("new resized image : ", img);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!file) return;
+    if (!fileUrl) return;
     try {
       const data = new FormData();
-      data.set("image", file);
+      data.set("image", fileUrl);
       data.append("name", name);
       data.append("artist", artist);
       data.append("category", category);
@@ -30,7 +120,6 @@ export default function AddPaintingForm() {
         method: "POST",
         body: data,
       });
-
       const myData = await res.json();
       setState(myData.message);
       setName("");
@@ -38,15 +127,15 @@ export default function AddPaintingForm() {
       setDescription("");
       setCategory("");
       setPrice("");
-      setFile(undefined);
+      setFileUrl(undefined);
+      //setResized(undefined);
       (document.getElementById("SubmitForm") as HTMLFormElement).reset();
       setTimeout(() => {
         setState(undefined);
       }, 4000);
       //  const form_values = Object.fromEntries(data);
       //  console.log("www", form_values);
-      if (!res.ok) throw new Error(await res.text());
-    } catch (error: unknown) {
+    } catch (error) {
       console.error(error);
     }
   };
@@ -131,7 +220,9 @@ export default function AddPaintingForm() {
         <input
           type="file"
           name="image"
-          onChange={(e) => setFile(e.target.files?.[0])}
+          //onChange={(e: React.ChangeEvent<HTMLInputElement>)=>getImg(e)}
+          //onChange={(e) => setFileUrl(e.target.files?.[0])}
+          onChange={getImg}
         />
         <SubmitButton isDisabled={isDisabled}>Add</SubmitButton>
       </form>

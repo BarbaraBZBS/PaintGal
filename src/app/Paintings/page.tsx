@@ -9,7 +9,7 @@ export default async function Paintings() {
       //or cache: "no-store",
     });
     const paintings = await res.json();
-    return paintings;
+    return paintings.paintings;
   };
 
   const paintings = await fetchPaintings();
