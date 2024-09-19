@@ -25,11 +25,10 @@ const paintingSchema: Schema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    //handle is new on display if createdAt > 1 week?
-    //isNewPiece: {
-    //  type: Boolean,
-    //  default: false,
-    //},
+    isNewPiece: {
+      type: Boolean,
+      default: true,
+    },
     onSale: {
       type: Boolean,
       default: false,

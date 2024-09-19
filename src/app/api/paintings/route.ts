@@ -22,21 +22,23 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   try {
-    const date = JSON.stringify(Date.now());
-    const newD = date.split(date[6]).pop();
+    const day = new Date();
+    const mm = day.getMonth() + 1;
+    const dd = day.getDate();
+    const yy = day.getFullYear();
+    const formattedDay = mm + "_" + dd + "_" + yy;
     const data = await req.formData();
     const file: File | null = data.get("image") as unknown as File;
 
     const nameToFormat = file.name.split(" ");
     const formattedName = nameToFormat.join("_");
-    const fileName = `${newD}_` + `${formattedName}`;
+    const fileName = `${formattedDay}_` + `${formattedName}`;
     const name = data.get("name");
     const artist = data.get("artist");
     const category = data.get("category");
     const description = data.get("description") || "";
     const rPrice = data.get("price");
-    //const isNewPiece = true;
-    const onSale = data.get("onSale") || false;
+    const onSale = data.get("onSale") || undefined;
     const image = `${process.env.CLIENT_URL}/files/${fileName}`;
     if (!file || !name || !artist || !category || !rPrice) {
       return NextResponse.json(
@@ -61,13 +63,13 @@ export async function POST(req: NextRequest) {
       description,
       price,
       image,
-      //isNewPiece,
+      isNewPiece: undefined,
       onSale,
     });
 
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
-    console.log(bytes, buffer);
+    //console.log(bytes, buffer);
 
     // With the file data in the buffer, we can do whatever we want with it.
     // Here it is written to the filesystem in public folder
@@ -80,17 +82,13 @@ export async function POST(req: NextRequest) {
     console.log(`open ${myPath} to see the uploaded file`);
     return NextResponse.json(
       { message: "Painting successfully added" },
-      {
-        status: 201,
-      }
+      { status: 201 }
     );
-  } catch (error: unknown) {
-    //console.error(error);
+  } catch (err: unknown) {
+    console.log(err);
     return NextResponse.json(
       { message: "Unable to add painting" },
-      {
-        status: 400,
-      }
+      { status: 400 }
     );
   }
 }

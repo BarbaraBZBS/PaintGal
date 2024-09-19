@@ -3,7 +3,9 @@ import React, { useState } from "react";
 import SubmitButton from "@src/app/components/submitButton";
 import FileResizer from "react-image-file-resizer";
 
-export default function AddPaintingForm() {
+// req.params id = painting id
+
+export default function UpdatePaintingForm() {
   const [fileUrl, setFileUrl] = useState<File | undefined>();
   const [state, setState] = useState();
   const [name, setName] = useState<string>("");
@@ -12,9 +14,8 @@ export default function AddPaintingForm() {
   const [description, setDescription] = useState<string>("");
   const [price, setPrice] = useState<string>("");
   const [onSale, setOnSale] = useState<boolean>(false);
-  const isDisabled = !fileUrl || !name || !artist || !category || !price;
+  const isDisabled = !fileUrl && !name && !artist && !category && !price;
 
-  //JPEG?? or WEBP or PNG??
   const resizeFile = (file: File) =>
     new Promise((resolve) => {
       FileResizer.imageFileResizer(
@@ -62,10 +63,15 @@ export default function AddPaintingForm() {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!fileUrl) return;
+    //if (!fileUrl) return;
+
+    //________________________________________________________________
+    //if(fileUrl or file...)
+
+    //________________________________________________________________
     try {
       const data = new FormData();
-      data.set("image", fileUrl);
+      //  data.set("image", fileUrl);
       data.append("name", name);
       data.append("artist", artist);
       data.append("category", category);

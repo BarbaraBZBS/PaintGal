@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-pgblue grid grid-rows-[50%_50%] mt-[1rem] h-[7rem]">
+    <footer className="bg-pgblue text-white grid grid-rows-[50%_50%] mt-[1rem] h-[7rem]">
       <Image
         src={logo}
         alt="logo"
