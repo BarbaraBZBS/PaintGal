@@ -2,10 +2,9 @@
 import React, { useState } from "react";
 import SubmitButton from "@src/app/components/submitButton";
 import FileResizer from "react-image-file-resizer";
+import { useRouter } from "next/navigation";
 
-// req.params id = painting id
-
-export default function UpdatePaintingForm() {
+export default function UpdatePaintingForm({ ...painting }) {
   const [fileUrl, setFileUrl] = useState<File | undefined>();
   const [state, setState] = useState();
   const [name, setName] = useState<string>("");
@@ -14,7 +13,9 @@ export default function UpdatePaintingForm() {
   const [description, setDescription] = useState<string>("");
   const [price, setPrice] = useState<string>("");
   const [onSale, setOnSale] = useState<boolean>(false);
-  const isDisabled = !fileUrl && !name && !artist && !category && !price;
+  const isDisabled =
+    !fileUrl && !name && !artist && !category && !price && !description;
+  const router = useRouter();
 
   const resizeFile = (file: File) =>
     new Promise((resolve) => {
@@ -63,26 +64,48 @@ export default function UpdatePaintingForm() {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    //if (!fileUrl) return;
-
-    //________________________________________________________________
-    //if(fileUrl or file...)
-
-    //________________________________________________________________
+    let data;
+    let myData;
     try {
-      const data = new FormData();
-      //  data.set("image", fileUrl);
-      data.append("name", name);
-      data.append("artist", artist);
-      data.append("category", category);
-      data.append("description", description);
-      data.append("price", price);
-      data.append("onSale", JSON.stringify(onSale));
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API}/paintings`, {
-        method: "POST",
-        body: data,
-      });
-      const myData = await res.json();
+      if (fileUrl) {
+        data = new FormData();
+        data.set("image", fileUrl);
+        data.append("name", name);
+        data.append("artist", artist);
+        data.append("category", category);
+        data.append("description", description);
+        data.append("price", price);
+        data.append("onSale", JSON.stringify(onSale));
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_API}/paintings/${painting._id}`,
+          {
+            method: "PUT",
+            body: data,
+          }
+        );
+        myData = await res.json();
+      } else {
+        data = {
+          name: name,
+          artist: artist,
+          category: category,
+          description: description,
+          price: price,
+          onSale: onSale,
+        };
+        const headers = {
+          "Content-Type": "application/json",
+        };
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_API}/paintings/${painting._id}`,
+          {
+            method: "PUT",
+            body: JSON.stringify(data),
+            headers: headers,
+          }
+        );
+        myData = await res.json();
+      }
       setState(myData.message);
       setName("");
       setArtist("");
@@ -90,10 +113,8 @@ export default function UpdatePaintingForm() {
       setCategory("");
       setPrice("");
       setFileUrl(undefined);
-      (document.getElementById("SubmitForm") as HTMLFormElement).reset();
-      setTimeout(() => {
-        setState(undefined);
-      }, 4000);
+      (document.getElementById("UpdateForm") as HTMLFormElement).reset();
+      router.push(`/Detail/${painting._id}`);
     } catch (error) {
       console.error(error);
     }
@@ -101,7 +122,7 @@ export default function UpdatePaintingForm() {
 
   return (
     <form
-      id="SubmitForm"
+      id="UpdateForm"
       onSubmit={onSubmit}
       className="px-[1.2rem] border border-gray-700 rounded-xl text-[1.4rem] text-blue-600 dark:text-violet-200 grid grid-rows-[repeat(9,1fr)] gap-[0.3rem]"
     >
@@ -110,15 +131,13 @@ export default function UpdatePaintingForm() {
         className=""
         type="text"
         name="name"
-        placeholder="Name"
-        required
+        placeholder={painting.name}
         onChange={(e) => setName(e.target.value)}
       />
       <input
         type="text"
         name="artist"
-        placeholder="Artist"
-        required
+        placeholder={painting.artist}
         onChange={(e) => setArtist(e.target.value)}
       />
       <div className="self-center">
@@ -126,16 +145,15 @@ export default function UpdatePaintingForm() {
           htmlFor="categories"
           className="uppercase"
         >
-          Choose Category
+          Category Chosen
         </label>
         <select
           className="ml-[1.5rem]"
           name="category"
           id="categories"
-          required
           onChange={(e) => setCategory(e.target.value)}
         >
-          <option value="">--Category--</option>
+          <option value="">{painting.category}</option>
           <option value="Nature">Nature</option>
           <option value="Animal">Animals</option>
           <option value="People">People</option>
@@ -149,16 +167,14 @@ export default function UpdatePaintingForm() {
         </select>
       </div>
       <textarea
-        //or input type="text"
         name="description"
-        placeholder="Description"
+        placeholder={painting.description}
         onChange={(e) => setDescription(e.target.value)}
       />
       <input
         type="text"
         name="price"
-        placeholder="Price"
-        required
+        placeholder={painting.price}
         onChange={(e) => setPrice(e.target.value)}
       />
 
@@ -168,7 +184,7 @@ export default function UpdatePaintingForm() {
           type="radio"
           name="onSale"
           value="false"
-          defaultChecked
+          defaultChecked={painting.onSale === false ? true : false}
           onClick={() => setOnSale(false)}
           className="text-emerald-400 ml-[1.5rem]"
         />
@@ -182,6 +198,7 @@ export default function UpdatePaintingForm() {
           type="radio"
           name="onSale"
           value="true"
+          defaultChecked={painting.onSale === false ? false : true}
           onClick={() => setOnSale(true)}
           className="text-emerald-400 ml-[1.5rem]"
         />
@@ -198,8 +215,14 @@ export default function UpdatePaintingForm() {
         name="image"
         onChange={getImg}
       />
+      <label
+        htmlFor="image"
+        className="overflow-hidden text-ellipsis"
+      >
+        {painting.image}
+      </label>
       <div className="place-self-center mb-[0.5rem]">
-        <SubmitButton isDisabled={isDisabled}>Add</SubmitButton>
+        <SubmitButton isDisabled={isDisabled}>Update</SubmitButton>
       </div>
     </form>
   );

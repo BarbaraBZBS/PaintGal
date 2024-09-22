@@ -52,11 +52,4 @@ const Painting =
   mongoose.models.Painting ||
   mongoose.model<IPainting>("Painting", paintingSchema);
 
-//interface IPaintingDoc extends IPainting, Document {}
-//interface IPaintingModel extends Model<IPaintingDoc> {}
-//
-//const paintingModel: IPaintingModel =
-//  Mongoose.models.painting ||
-//  Mongoose.model<IPaintingDoc>("painting", paintingSchema);
-//
 export default Painting;
