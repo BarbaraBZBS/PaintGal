@@ -27,6 +27,10 @@ const Detail: React.FC<PaintingDetailProp> = async (
 
   return (
     <main className="grid h-[60vh] w-[80vw] mt-[5rem] grid-rows-[15%_35%_50%] justify-self-center">
+      {/* for admins */}
+
+      {/* <button className="" onClick(push Update/id)>Update</button */}
+
       <h1 className="text-[1.7rem] uppercase text-center">{paint.name}</h1>
       <div className="">
         <p>&quot;{paint.description}&quot;</p>
@@ -39,6 +43,7 @@ const Detail: React.FC<PaintingDetailProp> = async (
         <p>Category : {paint.category}</p>
         <p>{paint.isNewPiece === true ? "NEW" : ""}</p>
       </div>
+      {/*<button>Add to Cart</button>*/}
       <Image
         src={paint.image}
         alt={`${paint.name}`}

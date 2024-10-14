@@ -217,7 +217,7 @@ export default function UpdatePaintingForm({ ...painting }) {
       />
       <label
         htmlFor="image"
-        className="overflow-hidden text-ellipsis"
+        className="overflow-hidden text-ellipsis h-[2.5rem] text-nowrap"
       >
         {painting.image}
       </label>

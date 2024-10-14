@@ -2,6 +2,10 @@ import mongoose, { Document, Schema } from "mongoose";
 
 const paintingSchema: Schema = new mongoose.Schema(
   {
+    _id: {
+      type: String,
+      required: true,
+    },
     name: {
       type: String,
       required: true,
@@ -38,6 +42,7 @@ const paintingSchema: Schema = new mongoose.Schema(
 );
 
 export type IPainting = Document & {
+  _id: string;
   name: string;
   artist: string;
   category: string;
