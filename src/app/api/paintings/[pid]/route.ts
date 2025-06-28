@@ -8,24 +8,27 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 import { writeFile } from "fs/promises";
 
 export async function GET(
-  req: NextRequest,
-  { params }: { params: { pid: string } }
+  req: Request,
+  { params }: { params: Promise<{ pid: string }> }
 ) {
-  const pid = params.pid;
   await dbConnect();
   try {
+    const { pid } = await params;
+    console.log("pid: ", pid);
     const painting = await Painting.findById({ _id: pid });
+    //const painting = await Painting.findById({ _id: "666caa33e487963d109b6bdb" });
+    //return Response.json(painting);
     if (painting) {
-      return NextResponse.json(painting);
+      console.log(painting);
+      return Response.json(painting);
+    } else {
+      console.log(painting);
+      return Response.json({ message: "Painting not found" }, { status: 404 });
     }
-    return NextResponse.json(
-      { message: "Painting not found" },
-      { status: 404 }
-    );
   } catch (err: unknown) {
     console.log(err);
     if (err instanceof Error) {
-      return NextResponse.json({ error: err.message });
+      return Response.json({ error: err.message });
     }
   }
 }
