@@ -1,9 +1,9 @@
-import mongoose, { Document, Schema } from "mongoose";
+import mongoose, { Document, Schema, ObjectId } from "mongoose";
 
 const paintingSchema: Schema = new mongoose.Schema(
   {
     _id: {
-      type: String,
+      type: mongoose.Types.ObjectId,
       required: true,
     },
     name: {
@@ -42,7 +42,7 @@ const paintingSchema: Schema = new mongoose.Schema(
 );
 
 export type IPainting = Document & {
-  _id: string;
+  _id: ObjectId;
   name: string;
   artist: string;
   category: string;

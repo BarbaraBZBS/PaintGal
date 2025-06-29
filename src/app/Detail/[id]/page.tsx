@@ -3,56 +3,34 @@ import Image from "next/image";
 
 export const revalidate = 10;
 
-//type PaintingDetailProp = {
-//  params: PaintingDetailParam;
-//};
-//
-//type PaintingDetailParam = {
-//  id: string;
-//};
-
-//const Detail: React.FC<PaintingDetailProp> = async (
-//  props: PaintingDetailProp
-//) => {
-//  const { id } = props.params;
-//  const fetchPainting = async () => {
-//    const res = await fetch(process.env.NEXT_PUBLIC_API + `/paintings/${id}`, {
-//      next: { revalidate: 60 },
-//    });
-//    const painting = await res.json();
-//    return painting;
-//  };
-//  const paint = await fetchPainting();
-
-const Detail = async ({ params }: { params: Promise<{ pid: string }> }) => {
-  const pid = (await params).pid;
+const Detail = async ({ params }: { params: { id: string } }) => {
+  const { id } = params;
   const fetchPainting = async () => {
-    const res = await fetch(process.env.NEXT_PUBLIC_API + `/paintings/${pid}`, {
-      next: { revalidate: 60 },
-    });
-    const painting = await res.json();
-    return painting;
+    try {
+      const res = await fetch(
+        process.env.NEXT_PUBLIC_API + `/paintings/${id}`,
+        {
+          next: { revalidate: 60 },
+        }
+      );
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+      const painting = await res.json();
+      return painting;
+    } catch (error) {
+      console.error("Error fetching painting:", error);
+      return null;
+    }
   };
+
   const paint = await fetchPainting();
+  //console.log("Painting data:", paint);
 
-  return (
-    <>
-      {/*{!paint && (
-        <div>
-          {" "}
-          <p>Issue gettinbg paitn data </p>
-        </div>
-      )}
-      {paint && (
-        <div>
-          {" "}
-          <p>ID :: {paint}</p>
-        </div>
-      )}*/}
-
+  if (paint) {
+    return (
       <main className="grid h-[60vh] w-[80vw] mt-[5rem] grid-rows-[15%_35%_50%] justify-self-center">
         {/* for admins */}
-
         {/* <button className="" onClick(push Update/id)>Update</button */}
 
         <h1 className="text-[1.7rem] uppercase text-center">{paint.name}</h1>
@@ -67,7 +45,9 @@ const Detail = async ({ params }: { params: Promise<{ pid: string }> }) => {
           <p>Category : {paint.category}</p>
           <p>{paint.isNewPiece === true ? "NEW" : ""}</p>
         </div>
+
         {/*<button>Add to Cart</button>*/}
+
         <Image
           src={paint.image}
           alt={`${paint.name}`}
@@ -78,8 +58,14 @@ const Detail = async ({ params }: { params: Promise<{ pid: string }> }) => {
           className="w-full h-full rounded-xl object-cover"
         />
       </main>
-    </>
-  );
+    );
+  } else {
+    return (
+      <div className="grid h-[60vh] w-[80vw] mt-[5rem] grid-rows-[15%_35%_50%] justify-self-center">
+        <p>Painting details could not be loaded</p>
+      </div>
+    );
+  }
 };
 
 export default Detail;
