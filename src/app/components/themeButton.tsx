@@ -1,25 +1,25 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
-import { motion } from "framer-motion";
+import { motion, spring as springAnimationGeneratorType } from "framer-motion";
 
-const spring = {
-  type: "spring",
+const springAnimation = {
+  type: springAnimationGeneratorType,
   stiffness: 700,
   damping: 30,
 };
 
 export default function ThemeButton() {
   const { resolvedTheme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+  //const [mounted, setMounted] = useState(false);
 
   const toggleSwitch = () =>
     setTheme(resolvedTheme === "dark" ? "light" : "dark");
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-  if (!mounted) return null;
+  //useEffect(() => {
+  //  setMounted(true);
+  //}, []);
+  //if (!mounted) return null;
 
   return (
     <div className="flex items-center justify-center">
@@ -38,7 +38,7 @@ export default function ThemeButton() {
           data-ison={resolvedTheme}
           className="bg-white rounded-[4rem] w-[1.5rem] h-[1.5rem] data-[ison=light]:bg-pgblue"
           layout
-          transition={spring}
+          transition={{ ...springAnimation }}
           whileHover={{ scale: 1.2 }}
         />
       </div>

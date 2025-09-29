@@ -3,14 +3,14 @@ import Image from "next/image";
 
 export const revalidate = 10;
 
-const Detail = async ({ params }: { params: { id: string } }) => {
-  const { id } = params;
+const Detail = async ({ params }: { params: Promise<{ id: string }> }) => {
+  const { id } = await params;
   const fetchPainting = async () => {
     try {
       const res = await fetch(
         process.env.NEXT_PUBLIC_API + `/paintings/${id}`,
         {
-          next: { revalidate: 60 },
+          next: { revalidate: 10 },
         }
       );
       if (!res.ok) {
@@ -25,7 +25,6 @@ const Detail = async ({ params }: { params: { id: string } }) => {
   };
 
   const paint = await fetchPainting();
-  //console.log("Painting data:", paint);
 
   if (paint) {
     return (

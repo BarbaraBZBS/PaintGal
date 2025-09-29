@@ -1,6 +1,11 @@
 "use client";
 
-export function BodyWrapper({ children }: { children: React.ReactNode }) {
-  //return <body cz-shortcut-listen="true">{children}</body>;
-  return <body>{children}</body>;
+export default function BodyWrapper({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return <body suppressHydrationWarning>{children}</body>;
 }

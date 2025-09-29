@@ -15,12 +15,8 @@ export async function GET(
   await dbConnect();
   try {
     const { pid } = await params;
-    console.log("Received pid:", new mongoose.Types.ObjectId(pid));
-    console.log("typeof pid:", typeof pid);
-    //const id = new mongoose.Types.ObjectId(pid);
+
     const painting = await Painting.findOne({ _id: pid });
-    //const painting = await Painting.findById({ _id: "666caa33e487963d109b6bdb" });
-    //return Response.json(painting);
     if (painting) {
       console.log(painting);
       return NextResponse.json(painting);
@@ -41,11 +37,11 @@ export async function GET(
 
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { pid: string } }
+  { params }: { params: Promise<{ pid: string }> }
 ) {
-  const pid = params.pid;
   await dbConnect();
   try {
+    const { pid } = await params;
     //cannot use req.file to handle with and without file so checking content-type
     const type = req.headers.get("content-type");
     const paint = await Painting.findById({ _id: pid });
@@ -145,11 +141,11 @@ export async function PUT(
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { pid: string } }
+  { params }: { params: Promise<{ pid: string }> }
 ) {
-  const pid = params.pid;
   await dbConnect();
   try {
+    const { pid } = await params;
     const removed = await Painting.findByIdAndDelete({ _id: pid });
     if (!removed) {
       return NextResponse.json({

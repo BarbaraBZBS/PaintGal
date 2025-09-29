@@ -5,17 +5,17 @@ import Image from "next/image";
 import Link from "next/link";
 import ThemeButton from "./themeButton";
 import { AuthLog } from "./authLog";
-import { motion, useCycle } from "framer-motion";
+import { motion, Transition, useCycle } from "framer-motion";
 
-const sidebar = {
-  open: (height = 200) => ({
+const getSidebarVariants = (height: number) => ({
+  open: {
     clipPath: `circle(${height * 1 + 10}px at 10vw 25px)`,
     transition: {
       type: "spring",
       stiffness: 100,
       restDelta: 1,
-    },
-  }),
+    } as Transition,
+  },
   closed: {
     clipPath: "circle(20px at 10vw 25px)",
     transition: {
@@ -23,15 +23,15 @@ const sidebar = {
       type: "spring",
       stiffness: 300,
       damping: 50,
-    },
+    } as Transition,
   },
-};
+});
 
 export default function Header() {
   const [isOpen, toggleOpen] = useCycle(false, true);
 
   return (
-    <nav className="grid grid-cols-[65%_10%_25%] md:grid-cols-[60%_10%_30%] text-[1.2rem] h-[5rem] mb-[1rem]">
+    <nav className="grid grid-cols-[65%_10%_25%] md:grid-cols-[60%_10%_30%] text-[1.2rem] h-[7rem] mb-[1rem] border-gray-300 dark:border-pg border-b-[0.1rem] shadow-lg">
       <div className="self-center mx-[2rem]">
         <Link href="/">
           <Image
@@ -68,7 +68,7 @@ export default function Header() {
       >
         <motion.div
           className="absolute top-0 right-[2.5vw] bottom-0 w-[20vw] bg-white dark:bg-black rounded-b-xl"
-          variants={sidebar}
+          variants={getSidebarVariants(200)}
         />
         <AuthLog
           toggle={() => toggleOpen()}

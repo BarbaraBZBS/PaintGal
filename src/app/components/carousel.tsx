@@ -1,19 +1,19 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IPainting } from "../models/painting";
 import Image from "next/image";
-import { motion, useMotionValue } from "framer-motion";
-import { useRouter } from "next/navigation";
+import { motion, spring, useMotionValue } from "framer-motion";
+import NavButton from "./navButton";
 
 const DRAG_BUFFER = 50;
 
-const DRAG_OPTIONS = { type: "spring", mass: 7, stiffness: 400, damping: 50 };
+const DRAG_OPTIONS = { type: spring, mass: 7, stiffness: 400, damping: 50 };
 
 const Carousel = ({ ...paintings }) => {
   const [drag, setDrag] = useState(false);
   const [ImgIdx, setImgIdx] = useState(0);
   const dragX = useMotionValue(0);
-  const router = useRouter();
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const onDragStart = () => {
     console.log(drag);
@@ -33,10 +33,9 @@ const Carousel = ({ ...paintings }) => {
     }
   };
 
-  const handleClick = (id: string) => {
-    console.log("clicked");
-    router.push(`Detail/${id}`);
-  };
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
 
   return (
     <>
@@ -56,7 +55,7 @@ const Carousel = ({ ...paintings }) => {
               animate={{
                 translateX: `-${ImgIdx * 100}%`,
               }}
-              transition={DRAG_OPTIONS}
+              transition={{ ...DRAG_OPTIONS }}
               onDragStart={onDragStart}
               onDragEnd={onDragEnd}
               className="flex items-center cursor-grab active:cursor-dragging"
@@ -69,25 +68,32 @@ const Carousel = ({ ...paintings }) => {
                     scale: ImgIdx === index ? 0.96 : 0.9,
                     opacity: ImgIdx === index ? 1 : 0.3,
                   }}
-                  transition={DRAG_OPTIONS}
+                  transition={{ ...DRAG_OPTIONS }}
                 >
-                  <Image
-                    draggable={false}
-                    src={paint.image}
-                    alt={`${paint.name}`}
-                    width={0}
-                    height={0}
-                    priority
-                    placeholder="empty"
-                    className="w-full h-full rounded-xl object-cover"
-                  />
-                  <div
-                    className="absolute uppercase text-[1.2rem] drop-shadow-darkenTxt bottom-[1rem] left-[0.5rem] cursor-pointer"
-                    onClick={() => handleClick(paint._id)}
-                  >
-                    <h2>{paint.artist}</h2>
-                    <h3>{paint.name}</h3>
-                  </div>
+                  {isLoaded && (
+                    <div className="relative w-full h-full">
+                      <Image
+                        draggable={false}
+                        src={paint.image}
+                        alt={`${paint.name}`}
+                        width={0}
+                        height={0}
+                        priority
+                        placeholder="empty"
+                        className="w-full h-full rounded-xl object-cover"
+                      />
+                      <div className="absolute bottom-[1rem] left-[0.5rem]">
+                        <NavButton id={paint._id}>
+                          <h2 className="uppercase text-[1.2rem] drop-shadow-darkenTxt">
+                            {paint.artist}
+                          </h2>
+                          <h3 className="uppercase text-[1.2rem] drop-shadow-darkenTxt">
+                            {paint.name}
+                          </h3>
+                        </NavButton>
+                      </div>
+                    </div>
+                  )}
                 </motion.div>
               ))}
             </motion.div>

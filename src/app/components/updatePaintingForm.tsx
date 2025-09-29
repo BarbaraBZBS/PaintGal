@@ -124,23 +124,24 @@ export default function UpdatePaintingForm({ ...painting }) {
     <form
       id="UpdateForm"
       onSubmit={onSubmit}
-      className="px-[1.2rem] border border-gray-700 rounded-xl text-[1.4rem] text-blue-600 dark:text-violet-200 grid grid-rows-[repeat(9,1fr)] gap-[0.3rem]"
+      className="px-[1.2rem] text-[1.4rem] text-blue-600 dark:text-violet-200 grid grid-rows-[repeat(9,1fr)] gap-[0.3rem]"
     >
       <div className="max-h-[4rem] self-center text-center">{state}</div>
       <input
-        className=""
+        className="bg-zinc-200 dark:bg-zinc-800 self-center rounded-3xl pl-4"
         type="text"
         name="name"
         placeholder={painting.name}
         onChange={(e) => setName(e.target.value)}
       />
       <input
+        className="bg-zinc-200 dark:bg-zinc-800 self-center rounded-3xl pl-4"
         type="text"
         name="artist"
         placeholder={painting.artist}
         onChange={(e) => setArtist(e.target.value)}
       />
-      <div className="self-center">
+      <div className="bg-zinc-200 dark:bg-zinc-800 self-center rounded-3xl pl-4">
         <label
           htmlFor="categories"
           className="uppercase"
@@ -167,18 +168,20 @@ export default function UpdatePaintingForm({ ...painting }) {
         </select>
       </div>
       <textarea
+        className="bg-zinc-200 dark:bg-zinc-800 self-center rounded-3xl pl-4"
         name="description"
         placeholder={painting.description}
         onChange={(e) => setDescription(e.target.value)}
       />
       <input
+        className="bg-zinc-200 dark:bg-zinc-800 self-center rounded-3xl pl-4"
         type="text"
         name="price"
         placeholder={painting.price}
         onChange={(e) => setPrice(e.target.value)}
       />
 
-      <div className="self-center">
+      <div className="bg-zinc-200 dark:bg-zinc-800 self-center rounded-3xl pl-4">
         <label className="uppercase">Put on Sale ?</label>
         <input
           type="radio"
@@ -210,7 +213,7 @@ export default function UpdatePaintingForm({ ...painting }) {
         </label>
       </div>
       <input
-        className="self-center w-full file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:font-semibold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100"
+        className="bg-zinc-200 dark:bg-zinc-800 rounded-3xl self-center w-full file:mr-6 file:py-2 file:px-4 file:rounded-full file:border-0 file:font-semibold file:bg-violet-50 file:text-violet-700 dark:file:bg-indigo-600 dark:file:text-indigo-300 dark:hover:file:bg-indigo-300 hover:file:bg-violet-200 hover:file:text-violet-800 dark:hover:file:text-indigo-800 "
         type="file"
         name="image"
         onChange={getImg}

@@ -5,7 +5,7 @@ import { IPainting } from "../models/painting";
 export default async function Showcase() {
   const fetchPaintings = async () => {
     const res = await fetch(process.env.NEXT_PUBLIC_API + "/paintings", {
-      next: { revalidate: 180 },
+      next: { revalidate: 10 },
     });
     const paintings = await res.json();
     return paintings.paintings;

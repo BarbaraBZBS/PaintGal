@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import SubmitButton from "@src/app/components/submitButton";
 import FileResizer from "react-image-file-resizer";
+import { useRouter } from "@node_modules/next/navigation";
 
 export default function AddPaintingForm() {
   const [fileUrl, setFileUrl] = useState<File | undefined>();
@@ -13,6 +14,7 @@ export default function AddPaintingForm() {
   const [price, setPrice] = useState<string>("");
   const [onSale, setOnSale] = useState<boolean>(false);
   const isDisabled = !fileUrl || !name || !artist || !category || !price;
+  const router = useRouter();
 
   //JPEG?? or WEBP or PNG??
   const resizeFile = (file: File) =>
@@ -88,6 +90,7 @@ export default function AddPaintingForm() {
       setTimeout(() => {
         setState(undefined);
       }, 4000);
+      router.refresh();
     } catch (error) {
       console.error(error);
     }
@@ -97,11 +100,13 @@ export default function AddPaintingForm() {
     <form
       id="SubmitForm"
       onSubmit={onSubmit}
-      className="px-[1.2rem] border border-gray-700 rounded-xl text-[1.4rem] text-blue-600 dark:text-violet-200 grid grid-rows-[repeat(9,1fr)] gap-[0.3rem]"
+      className="px-[1.2rem] text-[1.6rem] font-medium text-indigo-800 dark:text-violet-200 grid grid-rows-[repeat(9,1fr)] gap-[0.3rem]"
     >
-      <div className="max-h-[4rem] self-center text-center">{state}</div>
+      <div className="max-h-[4rem] self-center text-center text-orange-600">
+        {state}
+      </div>
       <input
-        className=""
+        className="bg-zinc-200 dark:bg-zinc-800 self-center rounded-3xl pl-4"
         type="text"
         name="name"
         placeholder="Name"
@@ -109,13 +114,14 @@ export default function AddPaintingForm() {
         onChange={(e) => setName(e.target.value)}
       />
       <input
+        className="bg-zinc-200 dark:bg-zinc-800 self-center rounded-3xl pl-4"
         type="text"
         name="artist"
         placeholder="Artist"
         required
         onChange={(e) => setArtist(e.target.value)}
       />
-      <div className="self-center">
+      <div className="self-center bg-zinc-200 dark:bg-zinc-800 rounded-3xl pl-4">
         <label
           htmlFor="categories"
           className="uppercase"
@@ -143,12 +149,13 @@ export default function AddPaintingForm() {
         </select>
       </div>
       <textarea
-        //or input type="text"
+        className="bg-zinc-200 dark:bg-zinc-800 self-center rounded-3xl pl-4"
         name="description"
         placeholder="Description"
         onChange={(e) => setDescription(e.target.value)}
       />
       <input
+        className="bg-zinc-200 dark:bg-zinc-800 self-center rounded-3xl pl-4"
         type="text"
         name="price"
         placeholder="Price"
@@ -156,7 +163,7 @@ export default function AddPaintingForm() {
         onChange={(e) => setPrice(e.target.value)}
       />
 
-      <div className="self-center">
+      <div className="self-center bg-zinc-200 dark:bg-zinc-800 rounded-3xl pl-4">
         <label className="uppercase">Put on Sale ?</label>
         <input
           type="radio"
@@ -187,7 +194,7 @@ export default function AddPaintingForm() {
         </label>
       </div>
       <input
-        className="self-center w-full file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:font-semibold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100"
+        className="bg-zinc-200 dark:bg-zinc-800 rounded-3xl self-center w-full file:mr-6 file:py-2 file:px-4 file:rounded-full file:border-0 file:font-semibold file:bg-violet-50 file:text-violet-700 dark:file:bg-indigo-600 dark:file:text-indigo-300 dark:hover:file:bg-indigo-300 hover:file:bg-violet-200 hover:file:text-violet-800 dark:hover:file:text-indigo-800 "
         type="file"
         name="image"
         onChange={getImg}

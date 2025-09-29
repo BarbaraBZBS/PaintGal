@@ -2,7 +2,7 @@
 
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
+  --background-start-rgb: 255, 255, 255;
   --background-end-rgb: 255, 255, 255;
   /*--primary: #7953be;
   --secondary: #4e5166;
@@ -13,8 +13,8 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background-start-rgb: 75, 60, 96;
+    --background-end-rgb: 75, 60, 96;
   }
 }
 
@@ -24,7 +24,7 @@ body {
   font-family: var(--custom-font-ysabeau0);
 }
 
-.dark {
+/*.dark {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
@@ -32,7 +32,7 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
-}
+}*/
 
 @layer base {
   /* base font size in percentage then change font-size and some other values to rem for browser font-size change to work */
@@ -47,4 +47,323 @@ body {
 
 utilities text-balance {
   text-wrap: balance;
+}
+
+/*@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));*/
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /*.dark {
+    --primary: #7953be;
+    --secondary: #4e5166;
+    --tertiary: #c9ffdd;
+    --quaternary: #ffc4d8;
+  }
+  .light {
+    --primary: #7953be;
+    --secondary: #4e5166;
+    --tertiary: #c9ffdd;
+    --quaternary: #ffc4d8;
+  }*/
+
+  --drop-shadow-3xl: 0 35px 35px rgba(0, 0, 0, 0.25);
+  --drop-shadow-4xl: 0 35px 35px rgba(0, 0, 0, 0.25),
+    0 45px 65px rgba(0, 0, 0, 0.15);
+  --drop-shadow-darkenTxt: 0.5px 2px 0.5px #000000;
+  --drop-shadow-linkTxt: 0 2.9px 1.2px rgba(0, 0, 0, 0.8);
+  --drop-shadow-light: 0 1.2px 1.2px rgba(0, 0, 0, 0.8);
+  --drop-shadow-lighter: 0 0.5px 0.2px rgba(0, 0, 0, 0.8);
+
+  --shadow-btnpink: 0px 15px 20px rgba(255, 206, 201, 0.4);
+  --shadow-btngreen: 0px 15px 20px rgba(217, 255, 197, 0.4);
+  --shadow-btnindigo: 0px 15px 20px rgba(67, 56, 202, 0.4);
+  --shadow-btnpastgreen: 0px 15px 20px rgba(201, 255, 221, 0.4);
+  --shadow-btnblue: 0px 15px 20px rgba(1, 209, 253, 0.4);
+  --shadow-btnorange: 0px 15px 20px rgba(252, 211, 77, 0.4);
+  --shadow-btnstone: 0px 15px 20px rgba(78, 81, 102, 0.4);
+  --shadow-btndred: 0px 15px 20px rgba(190, 18, 60, 0.4);
+  --shadow-btnlred: 0px 15px 20px rgba(254, 108, 77, 0.4);
+  --shadow-neatcard: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  --shadow-elevated: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  --shadow-sidepinkaccordeon: rgba(240, 46, 170, 0.4) 5px 5px,
+    rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px,
+    rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px;
+  --shadow-coloredpaperstack: blue 0px 0px 0px 2px inset,
+    rgb(255, 255, 255) 10px -10px 0px -3px, rgb(31, 193, 27) 10px -10px,
+    rgb(255, 255, 255) 20px -20px 0px -3px, rgb(255, 217, 19) 20px -20px,
+    rgb(255, 255, 255) 30px -30px 0px -3px, rgb(255, 156, 85) 30px -30px,
+    rgb(255, 255, 255) 40px -40px 0px -3px, rgb(255, 85, 85) 40px -40px;
+  --shadow-clothesbtn: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+    rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
+    rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
+    rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+    rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+  --shadow-inputboxtext: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+    rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  --shadow-inputboxtexthov: 0 0 5pt 2pt #d3d3d3;
+  --shadow-inputboxtextfoc: rgb(38, 57, 77) 0px 20px 30px -10px;
+  --shadow-card: rgb(38, 57, 77) 0px 20px 30px -10px;
+  --shadow-sunkiced: rgb(204, 219, 232) 3px 3px 6px 0px inset,
+    rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+  --shadow-strip: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  --shadow-bottomline: 0 5px 8px rgba(0, 0, 0, 0.35);
+  --shadow-bottomlinelight: 0 5px 8px rgba(0, 0, 0, 0.25);
+  --shadow-topline: 0 -8px 8px -3px rgba(0, 0, 0, 0.35);
+  --shadow-toplinelight: 0 -8px 8px -3px rgba(0, 0, 0, 0.25);
+  --shadow-lightinner: 0px 8px 15px rgba(0, 0, 0, 0.35) inset;
+
+  --animate-spin: spin infinite 1.3s linear;
+  --animate-scale: scale 0.4s ease-out forwards;
+  --animate-fill: fill ease-in-out 0.4s forwards;
+  --animate-zoom: zoom ease-out 0.2s forwards;
+  --animate-rotateZoom: rotatezoom 2s linear;
+  --animate-pressDown: pressdown 0.4s ease-in;
+  --animate-clicked: clicked 0.4s ease-out;
+  --animate-wiggle: wiggle 200ms ease-in-out;
+  --animate-reversePing: reverseping 0.3s ease-out forwards;
+  --animate-btnFlat: btnflat 0.6s ease-in-out both;
+  --animate-bgSize: bgsize 0.6s ease-in-out both;
+  --animate-reposition: reposition 0.6s forwards 0.2s;
+  --animate-ping2: ping2 1s cubic-bezier(0, 0, 0.2, 1) backwards;
+  --animate-resizeZoom: resizezoom 0.3s ease-in both;
+  --animate-resizeBtn: resizebtn 0.4s ease-out;
+  --animate-slideLeft: slideleft 0.4s ease-out;
+  --animate-slideRight: slideright 0.4s ease-out;
+  --animate-pressed: pressed 0.4s ease-in-out;
+  --animate-pop: pop 1s forwards;
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes scale {
+    from {
+      transform: scaleY(0);
+    }
+    to {
+      transform: scaleY(1);
+    }
+  }
+
+  @keyframes fill {
+    0% {
+      opacity: 0;
+    }
+    20% {
+      opacity: 0.2;
+      transform: scale(0.3);
+    }
+    40% {
+      opacity: 0.55;
+      transform: scale(0.5);
+    }
+    60% {
+      opacity: 0.85;
+      transform: scale(0.75);
+    }
+    80% {
+      transform: scale(1.2);
+    }
+  }
+
+  @keyframes zoom {
+    from {
+      transform: scale(0.6);
+      opacity: 0.2;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  @keyframes rotatezoom {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes pressdown {
+    0% {
+      transform: scale(0.9);
+      background-color: #c9ffdd;
+    }
+    40% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes pressed {
+    0% {
+      transform: scale(0.8);
+    }
+    40% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes clicked {
+    0% {
+      transform: scale(0.95);
+    }
+    40%,
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes wiggle {
+    0% {
+      transform: rotateZ(3deg);
+    }
+    50% {
+      transform: rotateZ(-3deg);
+    }
+    100% {
+      transform: rotateZ(3deg);
+    }
+  }
+
+  @keyframes bgsize {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes reverseping {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+
+  @keyframes btnflat {
+    0% {
+      transform: scaleY(1);
+    }
+    60% {
+      transform: scaleY(0);
+    }
+    100% {
+      transform: scaleY(1);
+    }
+  }
+
+  @keyframes reposition {
+    0% {
+      transform: translateY(40px);
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.2;
+    }
+    100% {
+      transform: translateY(0px);
+      opacity: 1;
+    }
+  }
+
+  @keyframes ping2 {
+    75%,
+    100% {
+      transform: scale(1.5);
+      opacity: 0;
+    }
+  }
+
+  @keyframes resizezoom {
+    from {
+      transform: scale(0.6);
+      opacity: 0.2;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes resizebtn {
+    10% {
+      transform: scale(0.5);
+      opacity: 0.5;
+    }
+    60% {
+      transform: scale(1.2);
+      opacity: 0.8;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideleft {
+    30% {
+      transform: translateX(0px);
+      opacity: 0, 5;
+    }
+    100% {
+      transform: translateX(-5px);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideright {
+    30% {
+      transform: translateX(0px);
+      opacity: 0, 5;
+    }
+    100% {
+      transform: translateX(5px);
+      opacity: 1;
+    }
+  }
+
+  @keyframes pop {
+    to {
+      backdrop-filter: blur(4px);
+    }
+  }
+
+  --color-pgred: #fd2d01;
+  --color-pggreen: #4fe29e;
+  --color-pgyellow: #eadb75;
+  --color-pgnavy: #15278d;
+  --color-pgblue: #595cc3;
+  --color-pgmauve: #d6b3ed;
+  --color-pgseethrough: rgba(255, 255, 255, 0.4);
+
+  --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
+  --background-image-gradient-conic: conic-gradient(
+    from 180deg at 50% 50%,
+    var(--tw-gradient-stops)
+  );
+
+  --object-position-center-up: 50% 35%;
+  --object-position-center-down: 50% 75%;
 }

@@ -5,7 +5,7 @@ import { ysabeauO } from "./font";
 import Header from "@src/app/components/header";
 import Footer from "@src/app/components/footer";
 import ThemeProvider from "@src/app/components/ThemeProvider";
-import { BodyWrapper } from "@src/app/hydrationWrapper";
+import BodyWrapper from "@src/app/hydrationWrapper";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -32,8 +32,8 @@ export default function RootLayout({
       lang="en"
       className={ysabeauO.className}
     >
-      <BodyWrapper>
-        {/*<body>*/}
+      <BodyWrapper className="">
+        {/*<BodyWrapper className="bg-white dark:bg-[#3b394f] text-[#37352f] dark:text-[#ffffffcf]">*/}
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -44,10 +44,7 @@ export default function RootLayout({
           {children}
           <Footer />
         </ThemeProvider>
-        {/*</body>*/}
       </BodyWrapper>
     </html>
   );
 }
-
-//<body className="bg-white dark:bg-[#191919] text-[#37352f] dark:text-[#ffffffcf]">}

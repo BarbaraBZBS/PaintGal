@@ -1,12 +1,15 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, Variant, Transition } from "framer-motion";
 
 type PathProps = {
-  variants: { closed: NonNullable<unknown>; open: NonNullable<unknown> };
+  variants: {
+    closed: Variant;
+    open: Variant;
+  };
   d?: string;
-  transition?: object;
+  transition?: Transition | undefined;
 };
 
 type OpenProp = {
@@ -54,7 +57,10 @@ export const AuthLog: React.FC<OpenProp> = ({ toggle, isOpen }) => {
       </div>
 
       <div className="md:hidden h-full grid place-items-center relative">
-        <button onClick={toggle}>
+        <button
+          onClick={toggle}
+          className="cursor-pointer"
+        >
           <svg
             width="23"
             height="23"

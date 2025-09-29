@@ -1,10 +1,10 @@
 import Painting from "@src/app/models/painting";
 import dbConnect from "@src/lib/dbConnect";
-//import { NextResponse, NextRequest } from "next/server";
 import path from "path";
 import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 import { writeFile } from "fs/promises";
+import mongoose from "mongoose";
 
 export async function GET() {
   await dbConnect();
@@ -59,6 +59,7 @@ export async function POST(req: Request) {
     const price = Number(rPrice);
     await dbConnect();
     await Painting.create({
+      _id: new mongoose.Types.ObjectId(),
       name,
       artist,
       category,
