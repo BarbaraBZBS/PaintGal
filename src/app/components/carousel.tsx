@@ -63,7 +63,7 @@ const Carousel = ({ ...paintings }) => {
               {paintings?.paintings.map((paint: IPainting, index: number) => (
                 <motion.div
                   key={index}
-                  className="aspect-video w-full h-full shrink-0"
+                  className="aspect-video w-full h-full shrink-0 overflow-hidden"
                   animate={{
                     scale: ImgIdx === index ? 0.96 : 0.9,
                     opacity: ImgIdx === index ? 1 : 0.3,
@@ -82,6 +82,15 @@ const Carousel = ({ ...paintings }) => {
                         placeholder="empty"
                         className="w-full h-full rounded-xl object-cover"
                       />
+                      {paint.onSale && (
+                        <div className="absolute top-0 right-0">
+                          <div className="w-32 h-8 absolute top-4 -right-8">
+                            <div className="h-full w-full bg-red-500 text-white text-center leading-8 font-semibold transform rotate-45">
+                              SALE
+                            </div>
+                          </div>
+                        </div>
+                      )}
                       <div className="absolute bottom-[1rem] left-[0.5rem]">
                         <NavButton id={paint._id}>
                           <h2 className="uppercase text-[1.2rem] drop-shadow-darkenTxt">

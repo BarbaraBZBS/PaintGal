@@ -97,111 +97,113 @@ export default function AddPaintingForm() {
   };
 
   return (
-    <form
-      id="SubmitForm"
-      onSubmit={onSubmit}
-      className="px-[1.2rem] text-[1.6rem] font-medium text-indigo-800 dark:text-violet-200 grid grid-rows-[repeat(9,1fr)] gap-[0.3rem]"
-    >
-      <div className="max-h-[4rem] self-center text-center text-orange-600">
-        {state}
-      </div>
-      <input
-        className="bg-zinc-200 dark:bg-zinc-800 self-center rounded-3xl pl-4"
-        type="text"
-        name="name"
-        placeholder="Name"
-        required
-        onChange={(e) => setName(e.target.value)}
-      />
-      <input
-        className="bg-zinc-200 dark:bg-zinc-800 self-center rounded-3xl pl-4"
-        type="text"
-        name="artist"
-        placeholder="Artist"
-        required
-        onChange={(e) => setArtist(e.target.value)}
-      />
-      <div className="self-center bg-zinc-200 dark:bg-zinc-800 rounded-3xl pl-4">
-        <label
-          htmlFor="categories"
-          className="uppercase"
-        >
-          Choose Category
-        </label>
-        <select
-          className="ml-[1.5rem]"
-          name="category"
-          id="categories"
+    <div className="">
+      <form
+        id="SubmitForm"
+        onSubmit={onSubmit}
+        className="text-[1.6rem] font-medium text-indigo-800 dark:text-violet-200 grid grid-rows-[repeat(9,1fr)]"
+      >
+        <div className="max-h-[4rem] self-center text-center text-orange-600">
+          {state}
+        </div>
+        <input
+          className="bg-zinc-200 dark:bg-zinc-800 self-center rounded-3xl pl-4"
+          type="text"
+          name="name"
+          placeholder="Name"
           required
-          onChange={(e) => setCategory(e.target.value)}
-        >
-          <option value="">--Category--</option>
-          <option value="Nature">Nature</option>
-          <option value="Animal">Animals</option>
-          <option value="People">People</option>
-          <option value="Fruits">Fruits</option>
-          <option value="Abstract">Abstract</option>
-          <option value="Landscape">Landscape</option>
-          <option value="Technology">Technology</option>
-          <option value="Objects">Objects</option>
-          <option value="Space">Space</option>
-          <option value="Other">Other</option>
-        </select>
-      </div>
-      <textarea
-        className="bg-zinc-200 dark:bg-zinc-800 self-center rounded-3xl pl-4"
-        name="description"
-        placeholder="Description"
-        onChange={(e) => setDescription(e.target.value)}
-      />
-      <input
-        className="bg-zinc-200 dark:bg-zinc-800 self-center rounded-3xl pl-4"
-        type="text"
-        name="price"
-        placeholder="Price"
-        required
-        onChange={(e) => setPrice(e.target.value)}
-      />
+          onChange={(e) => setName(e.target.value)}
+        />
+        <input
+          className="bg-zinc-200 dark:bg-zinc-800 self-center rounded-3xl pl-4"
+          type="text"
+          name="artist"
+          placeholder="Artist"
+          required
+          onChange={(e) => setArtist(e.target.value)}
+        />
+        <div className="self-center bg-zinc-200 dark:bg-zinc-800 rounded-3xl pl-4">
+          <label
+            htmlFor="categories"
+            className="uppercase"
+          >
+            Choose Category
+          </label>
+          <select
+            className="ml-[1.5rem]"
+            name="category"
+            id="categories"
+            required
+            onChange={(e) => setCategory(e.target.value)}
+          >
+            <option value="">--Category--</option>
+            <option value="Nature">Nature</option>
+            <option value="Animal">Animals</option>
+            <option value="People">People</option>
+            <option value="Fruits">Fruits</option>
+            <option value="Abstract">Abstract</option>
+            <option value="Landscape">Landscape</option>
+            <option value="Technology">Technology</option>
+            <option value="Objects">Objects</option>
+            <option value="Space">Space</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <textarea
+          className="bg-zinc-200 dark:bg-zinc-800 self-center rounded-3xl pl-4"
+          name="description"
+          placeholder="Description"
+          onChange={(e) => setDescription(e.target.value)}
+        />
+        <input
+          className="bg-zinc-200 dark:bg-zinc-800 self-center rounded-3xl pl-4"
+          type="text"
+          name="price"
+          placeholder="Price"
+          required
+          onChange={(e) => setPrice(e.target.value)}
+        />
 
-      <div className="self-center bg-zinc-200 dark:bg-zinc-800 rounded-3xl pl-4">
-        <label className="uppercase">Put on Sale ?</label>
+        <div className="self-center bg-zinc-200 dark:bg-zinc-800 rounded-3xl pl-4">
+          <label className="uppercase">Put on Sale ?</label>
+          <input
+            type="radio"
+            name="onSale"
+            value="false"
+            defaultChecked
+            onClick={() => setOnSale(false)}
+            className="text-emerald-400 ml-[1.5rem]"
+          />
+          <label
+            htmlFor="notOnSale"
+            className="m-[0.2rem]"
+          >
+            No
+          </label>
+          <input
+            type="radio"
+            name="onSale"
+            value="true"
+            onClick={() => setOnSale(true)}
+            className="text-emerald-400 ml-[1.5rem]"
+          />
+          <label
+            htmlFor="onSale"
+            className="m-[0.2rem]"
+          >
+            Yes
+          </label>
+        </div>
         <input
-          type="radio"
-          name="onSale"
-          value="false"
-          defaultChecked
-          onClick={() => setOnSale(false)}
-          className="text-emerald-400 ml-[1.5rem]"
+          className="bg-zinc-200 dark:bg-zinc-800 rounded-3xl self-center w-full file:mr-6 file:py-2 file:px-4 file:rounded-full file:border-0 file:font-semibold file:bg-violet-50 file:text-violet-700 dark:file:bg-indigo-600 dark:file:text-indigo-300 dark:hover:file:bg-indigo-300 hover:file:bg-violet-200 hover:file:text-violet-800 dark:hover:file:text-indigo-800 "
+          type="file"
+          name="image"
+          onChange={getImg}
         />
-        <label
-          htmlFor="notOnSale"
-          className="m-[0.2rem]"
-        >
-          No
-        </label>
-        <input
-          type="radio"
-          name="onSale"
-          value="true"
-          onClick={() => setOnSale(true)}
-          className="text-emerald-400 ml-[1.5rem]"
-        />
-        <label
-          htmlFor="onSale"
-          className="m-[0.2rem]"
-        >
-          Yes
-        </label>
-      </div>
-      <input
-        className="bg-zinc-200 dark:bg-zinc-800 rounded-3xl self-center w-full file:mr-6 file:py-2 file:px-4 file:rounded-full file:border-0 file:font-semibold file:bg-violet-50 file:text-violet-700 dark:file:bg-indigo-600 dark:file:text-indigo-300 dark:hover:file:bg-indigo-300 hover:file:bg-violet-200 hover:file:text-violet-800 dark:hover:file:text-indigo-800 "
-        type="file"
-        name="image"
-        onChange={getImg}
-      />
-      <div className="place-self-center mb-[0.5rem]">
+      </form>
+      <div className="grid place-content-center">
         <SubmitButton isDisabled={isDisabled}>Add</SubmitButton>
       </div>
-    </form>
+    </div>
   );
 }

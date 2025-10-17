@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import PurchaseButton from "@src/app/components/purchaseButton";
 
 export const revalidate = 10;
 
@@ -26,12 +27,32 @@ const Detail = async ({ params }: { params: Promise<{ id: string }> }) => {
 
   const paint = await fetchPainting();
 
+  //full month discount
+  let months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  let nextMonth = ((new Date().getMonth() + 1) % 12) + 1;
+  let stringMonth = months[nextMonth];
+
+  //few days discount
+  let currentDate = new Date().toLocaleDateString("en-US", {
+    month: "long",
+  });
+
   if (paint) {
     return (
       <main className="grid h-[60vh] w-[80vw] mt-[5rem] grid-rows-[15%_35%_50%] justify-self-center">
-        {/* for admins */}
-        {/* <button className="" onClick(push Update/id)>Update</button */}
-
         <h1 className="text-[1.7rem] uppercase text-center">{paint.name}</h1>
         <div className="">
           <p>&quot;{paint.description}&quot;</p>
@@ -40,12 +61,12 @@ const Detail = async ({ params }: { params: Promise<{ id: string }> }) => {
             <span>$ </span>
             {paint.price}
           </p>
-          <p>{paint.onSale === true ? "On Sale!" : ""}</p>
+          <p className="text-green-800 dark:text-pggreen">
+            {paint.onSale === true ? `On Sale until ${currentDate} 30th!` : ""}
+          </p>
           <p>Category : {paint.category}</p>
           <p>{paint.isNewPiece === true ? "NEW" : ""}</p>
         </div>
-
-        {/*<button>Add to Cart</button>*/}
 
         <Image
           src={paint.image}
@@ -56,6 +77,13 @@ const Detail = async ({ params }: { params: Promise<{ id: string }> }) => {
           placeholder="empty"
           className="w-full h-full rounded-xl object-cover"
         />
+
+        <div className="grid justify-items-center m-[4rem]">
+          <PurchaseButton
+            children="Buy"
+            id={paint._id}
+          />
+        </div>
       </main>
     );
   } else {

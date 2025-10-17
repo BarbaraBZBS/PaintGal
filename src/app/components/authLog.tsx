@@ -43,90 +43,179 @@ const linkVariants = {
     },
   },
 };
-const status = "notauthenticated";
+const status = "notAuthenticated";
+const privilege = "notAdmin";
 
 export const AuthLog: React.FC<OpenProp> = ({ toggle, isOpen }) => {
   return (
     <>
-      <div className="hidden md:grid">
-        {status === "notauthenticated" ? (
-          <Link href="/Login">Login</Link>
-        ) : (
-          <Link href="/Logout">Logout</Link>
-        )}
-      </div>
-
-      <div className="md:hidden h-full grid place-items-center relative">
-        <button
-          onClick={toggle}
-          className="cursor-pointer"
-        >
-          <svg
-            width="23"
-            height="23"
-            viewBox="0 0 23 23"
-          >
-            <Path
-              variants={{
-                closed: { d: "M 2 2.5 L 20 2.5" },
-                open: { d: "M 3 16.5 L 17 2.5" },
-              }}
-            />
-            <Path
-              d="M 2 9.423 L 20 9.423"
-              variants={{
-                closed: { opacity: 1 },
-                open: { opacity: 0 },
-              }}
-              transition={{ duration: 0.1 }}
-            />
-            <Path
-              variants={{
-                closed: { d: "M 2 16.346 L 20 16.346" },
-                open: { d: "M 3 2.5 L 17 16.346" },
-              }}
-            />
-          </svg>
-        </button>
-      </div>
-      {isOpen && (
-        <ul className="h-[10rem] w-[20vw] right-[2.5vw] grid absolute place-items-center rounded-b-lg text-[1.3rem]">
-          <motion.li
-            variants={linkVariants}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            className="list-none"
-          >
-            <Link href="/">Home</Link>
-          </motion.li>
-          <motion.li
-            variants={linkVariants}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            className="list-none"
-          >
-            <Link href="/About">About</Link>
-          </motion.li>
-          {status === "notauthenticated" ? (
-            <motion.li
-              variants={linkVariants}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              className="list-none"
-            >
-              <Link href="/Login">Login</Link>
-            </motion.li>
-          ) : (
-            <motion.li
-              variants={linkVariants}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              className="list-none"
-            >
+      {privilege === "notAdmin" ? (
+        <>
+          <div className="hidden md:grid">
+            {status === "notAuthenticated" ? (
+              <Link href="/Sign">Login</Link>
+            ) : (
               <Link href="/Logout">Logout</Link>
-            </motion.li>
+            )}
+          </div>
+
+          <div className="md:hidden h-full grid place-items-center relative">
+            <button
+              onClick={toggle}
+              className="cursor-pointer"
+            >
+              <svg
+                width="23"
+                height="23"
+                viewBox="0 0 23 23"
+              >
+                <Path
+                  variants={{
+                    closed: { d: "M 2 2.5 L 20 2.5" },
+                    open: { d: "M 3 16.5 L 17 2.5" },
+                  }}
+                />
+                <Path
+                  d="M 2 9.423 L 20 9.423"
+                  variants={{
+                    closed: { opacity: 1 },
+                    open: { opacity: 0 },
+                  }}
+                  transition={{ duration: 0.1 }}
+                />
+                <Path
+                  variants={{
+                    closed: { d: "M 2 16.346 L 20 16.346" },
+                    open: { d: "M 3 2.5 L 17 16.346" },
+                  }}
+                />
+              </svg>
+            </button>
+          </div>
+          {isOpen && (
+            <ul className="h-[15rem] w-[20vw] right-[2.5vw] grid absolute place-items-center rounded-b-lg text-[1.3rem]">
+              {status === "notAuthenticated" ? (
+                <motion.li
+                  variants={linkVariants}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="list-none md:hidden"
+                >
+                  <Link href="/Sign">Login</Link>
+                </motion.li>
+              ) : (
+                <motion.li
+                  variants={linkVariants}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="list-none md:hidden"
+                >
+                  <Link href="/Logout">Logout</Link>
+                </motion.li>
+              )}
+              <motion.li
+                variants={linkVariants}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                className="list-none md:hidden"
+              >
+                <Link href="/">Home</Link>
+              </motion.li>
+              <motion.li
+                variants={linkVariants}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                className="list-none md:hidden"
+              >
+                <Link href="/About">About</Link>
+              </motion.li>
+            </ul>
           )}
-        </ul>
+        </>
+      ) : (
+        <>
+          <div className="hidden md:grid">
+            {status === "notAuthenticated" ? (
+              <Link href="/Sign">Login</Link>
+            ) : (
+              <Link href="/Logout">Logout</Link>
+            )}
+          </div>
+
+          <div className="md:hidden h-full grid place-items-center relative">
+            <button
+              onClick={toggle}
+              className="cursor-pointer"
+            >
+              <svg
+                width="23"
+                height="23"
+                viewBox="0 0 23 23"
+              >
+                <Path
+                  variants={{
+                    closed: { d: "M 2 2.5 L 20 2.5" },
+                    open: { d: "M 3 16.5 L 17 2.5" },
+                  }}
+                />
+                <Path
+                  d="M 2 9.423 L 20 9.423"
+                  variants={{
+                    closed: { opacity: 1 },
+                    open: { opacity: 0 },
+                  }}
+                  transition={{ duration: 0.1 }}
+                />
+                <Path
+                  variants={{
+                    closed: { d: "M 2 16.346 L 20 16.346" },
+                    open: { d: "M 3 2.5 L 17 16.346" },
+                  }}
+                />
+              </svg>
+            </button>
+          </div>
+          {isOpen && (
+            <ul className="h-[15rem] w-[20vw] right-[2.5vw] grid absolute place-items-center rounded-b-lg text-[1.3rem]">
+              {status === "notAuthenticated" ? (
+                <motion.li
+                  variants={linkVariants}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="list-none md:hidden"
+                >
+                  <Link href="/Sign">Login</Link>
+                </motion.li>
+              ) : (
+                <motion.li
+                  variants={linkVariants}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="list-none md:hidden"
+                >
+                  <Link href="/Logout">Logout</Link>
+                </motion.li>
+              )}
+              <motion.li
+                variants={linkVariants}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                className="list-none md:hidden"
+              >
+                <Link href="/">Home</Link>
+              </motion.li>
+
+              <motion.li
+                variants={linkVariants}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                className="list-none md:hidden"
+              >
+                <Link href="/ManagePaintings">Manage</Link>
+              </motion.li>
+            </ul>
+          )}
+        </>
       )}
     </>
   );

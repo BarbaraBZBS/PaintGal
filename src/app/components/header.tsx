@@ -29,6 +29,7 @@ const getSidebarVariants = (height: number) => ({
 
 export default function Header() {
   const [isOpen, toggleOpen] = useCycle(false, true);
+  const privilege = "notAdmin";
 
   return (
     <nav className="grid grid-cols-[65%_10%_25%] md:grid-cols-[60%_10%_30%] text-[1.2rem] h-[7rem] mb-[1rem] border-gray-300 dark:border-pg border-b-[0.1rem] shadow-lg">
@@ -49,18 +50,25 @@ export default function Header() {
 
       <ul className="hidden md:grid grid-cols-[33.33%_33.33%_33.33%] justify-items-end mx-[2rem]">
         <li className="self-center">
-          <Link href="/">Home</Link>
-        </li>
-        <li className="self-center">
-          <Link href="/About">About</Link>
-        </li>
-        <li className="self-center">
           <AuthLog
             toggle={() => toggleOpen()}
             isOpen={isOpen}
           />
         </li>
+        <li className="self-center">
+          <Link href="/">Home</Link>
+        </li>
+        {privilege === "notAdmin" ? (
+          <li className="self-center">
+            <Link href="/About">About</Link>
+          </li>
+        ) : (
+          <li className="self-center">
+            <Link href="/ManagePaintings">Manage</Link>
+          </li>
+        )}
       </ul>
+
       <motion.div
         initial={false}
         animate={isOpen ? "open" : "closed"}

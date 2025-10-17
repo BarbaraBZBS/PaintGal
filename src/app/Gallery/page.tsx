@@ -9,11 +9,14 @@ export const revalidate = 10;
 export default function Gallery() {
   return (
     <>
-      <div className="m-[1rem] justify-self-end">
+      <div className="grid justify-items-end h-[5rem] m-[2rem]">
         <GoBack />
       </div>
-      <main className="grid h-[45rem] w-[80vw] mt-[5rem] grid-rows-[8%_92%] place-self-center mb-[2rem]">
-        <h1 className="text-[1.7rem] uppercase text-center">Add a new Piece</h1>
+
+      <main className="grid w-[80vw] md:w-[70vw] grid-rows-[3%_83%_1%] place-self-center pb-[2rem]">
+        <h1 className="text-[1.7rem] uppercase text-center place-content-center">
+          Add a new Piece
+        </h1>
         <AddPaintingForm />
       </main>
     </>

@@ -6,25 +6,17 @@ import DeletePainting from "@src/app/components/deletePainting";
 
 export const revalidate = 10;
 
-//type PaintingUpdDetailProp = {
-//  params: PaintingUpdDetailParam;
-//};
-//
-//type PaintingUpdDetailParam = {
-//  id: string;
-//};
-
 const Delete = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
   const fetchPainting = async () => {
-    const res = await fetch(process.env.NEXT_PUBLIC_API + `/paintings/${id}`, {
-      //next: { revalidate: 20 },
-    });
+    const res = await fetch(
+      process.env.NEXT_PUBLIC_API + `/paintings/${id}`,
+      {}
+    );
     const painting = await res.json();
     return painting;
   };
   const painting = await fetchPainting();
-  //console.log(painting);
 
   return (
     <>
