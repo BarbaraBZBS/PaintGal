@@ -52,9 +52,11 @@ const Detail = async ({ params }: { params: Promise<{ id: string }> }) => {
 
   if (paint) {
     return (
-      <main className="grid h-[60vh] w-[80vw] mt-[5rem] grid-rows-[15%_35%_50%] justify-self-center">
-        <h1 className="text-[1.7rem] uppercase text-center">{paint.name}</h1>
-        <div className="">
+      <main className="grid h-[65vh] lg:h-[90vh] lg:min-h-[80vh] w-[80vw] mt-[5rem] grid-rows-[10%_25%_45%_20%] lg:grid-rows-[8%_20%_60%_12%] justify-self-center">
+        <h1 className="text-[1.7rem] uppercase text-center font-semibold">
+          {paint.name}
+        </h1>
+        <div className="text-[1.4rem] lg:text-[1.55rem]">
           <p>&quot;{paint.description}&quot;</p>
           <h3>By {paint.artist}</h3>
           <p>
@@ -78,7 +80,7 @@ const Detail = async ({ params }: { params: Promise<{ id: string }> }) => {
           className="w-full h-full rounded-xl object-cover"
         />
 
-        <div className="grid justify-items-center m-[4rem]">
+        <div className="place-self-center">
           <PurchaseButton
             children="Buy"
             id={paint._id}
@@ -88,7 +90,7 @@ const Detail = async ({ params }: { params: Promise<{ id: string }> }) => {
     );
   } else {
     return (
-      <div className="grid h-[60vh] w-[80vw] mt-[5rem] grid-rows-[15%_35%_50%] justify-self-center">
+      <div className="grid">
         <p>Painting details could not be loaded</p>
       </div>
     );

@@ -16,22 +16,22 @@ const PickDeletePainting = ({ ...paintings }) => {
 
   return (
     <div>
-      <div className="grid justify-items-end">
+      <div className="grid justify-items-end mb-[4rem]">
         <GoBack />
       </div>
 
       {paintings?.paintings.length > 0 && (
         <>
-          <h1 className="text-[1.7rem] uppercase text-center">
+          <h1 className="text-[1.7rem] uppercase text-center mb-[5rem] font-semibold">
             Paintings (Delete)
           </h1>
           {paintings?.paintings.map((paint: IPainting, index: number) => (
             <div
               key={index}
-              className="border-[0.1rem] p-2 m-2 cursor-pointer"
+              className="border-[0.1rem] p-2 m-2 cursor-pointer text-[1.4rem]"
               onClick={() => handleClick(paint._id)}
             >
-              <h2 className="text-[1.5rem] text-pgnavy dark:text-pggreen">
+              <h2 className="text-[1.6rem] text-pgnavy dark:text-pggreen">
                 {paint.name}
               </h2>
               <h3>By {paint.artist}</h3>

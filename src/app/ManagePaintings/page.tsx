@@ -7,14 +7,16 @@ import GoBack from "@src/app/components/goBack";
 export default function ManagePaintings() {
   return (
     <>
-      <main className="mt-10 p-2 h-[40rem] grid grid-rows-5 text-[2rem] text-center text-pgnavy dark:text-pggreen">
-        <div className="grid justify-items-end max-h-[5rem]">
+      <main className="h-[40rem]">
+        <div className="grid justify-items-end mb-[5rem]">
           <GoBack />
         </div>
-        <Link href="/Paintings">Paintings List</Link>
-        <Link href="/Gallery">Add Painting</Link>
-        <Link href="/Update">Update Painting</Link>
-        <Link href="/Delete">Delete Painting</Link>
+        <div className="grid text-center text-[2rem] text-pgnavy dark:text-pggreen  gap-[4rem]">
+          <Link href="/Paintings">Paintings List</Link>
+          <Link href="/Gallery">Add Painting</Link>
+          <Link href="/Update">Update Painting</Link>
+          <Link href="/Delete">Delete Painting</Link>
+        </div>
       </main>
     </>
   );

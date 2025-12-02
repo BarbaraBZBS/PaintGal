@@ -1,5 +1,5 @@
 import Image from "next/image";
-import gallery from "@/public/images/paintgalhome.jpg";
+import gallery from "../../public/images/paintgalhome.jpg";
 import Showcase from "./components/showcase";
 
 export default async function Home() {
