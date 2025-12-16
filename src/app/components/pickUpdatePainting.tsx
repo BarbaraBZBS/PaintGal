@@ -4,6 +4,7 @@ import { IPainting } from "../models/painting";
 import { useRouter } from "next/navigation";
 import { ObjectId } from "mongoose";
 import GoBack from "./goBack";
+import ManagePaintingsButton from "./managePaintingsButton";
 
 //ADMIN PAGE -
 
@@ -16,8 +17,9 @@ const PickUpdatePainting = ({ ...paintings }) => {
 
   return (
     <div>
-      <div className="grid justify-items-end mb-[4rem]">
+      <div className="grid grid-cols-[repeat(2,13rem)] justify-between mb-[4rem]">
         <GoBack />
+        <ManagePaintingsButton />
       </div>
 
       {paintings?.paintings.length > 0 && (

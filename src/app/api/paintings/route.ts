@@ -1,4 +1,4 @@
-import Painting from "@src/app/models/painting";
+import {Painting} from "@src/app/models/painting";
 import dbConnect from "@src/lib/dbConnect";
 import path from "path";
 import { fileURLToPath } from "url";

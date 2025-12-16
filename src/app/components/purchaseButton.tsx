@@ -20,7 +20,7 @@ export default function PurchaseButton({
       ["button", { scale: 0.8 }, { duration: 0.1, at: "<" }],
       ["button", { scale: 1 }, { duration: 0.1 }],
     ]);
-    //router.push(`Detail/${id}`);
+    router.push(`/Detail/${id}/checkout`);
   };
 
   return (

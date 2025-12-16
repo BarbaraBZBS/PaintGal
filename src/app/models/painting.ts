@@ -1,9 +1,21 @@
-import mongoose, { Document, Schema, ObjectId } from "mongoose";
+import mongoose, { model, Schema, Types } from "mongoose";
 
-const paintingSchema: Schema = new mongoose.Schema(
+export interface IPainting {
+  _id: Types.ObjectId;
+  name: string;
+  artist: string;
+  category: string;
+  description: string;
+  price: number;
+  image: string;
+  isNewPiece: boolean;
+  onSale: boolean;
+};
+
+const paintingSchema = new Schema<IPainting>(
   {
     _id: {
-      type: mongoose.Types.ObjectId,
+      type: Schema.Types.ObjectId,
     },
     name: {
       type: String,
@@ -40,20 +52,6 @@ const paintingSchema: Schema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export type IPainting = Document & {
-  _id: ObjectId;
-  name: string;
-  artist: string;
-  category: string;
-  description: string;
-  price: number;
-  image: string;
-  isNewPiece: boolean;
-  onSale: boolean;
-};
 
-const Painting =
-  mongoose.models.Painting ||
-  mongoose.model<IPainting>("Painting", paintingSchema);
 
-export default Painting;
+export const Painting = mongoose.models.Painting || model<IPainting>("Painting", paintingSchema);

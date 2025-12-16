@@ -114,7 +114,7 @@ export default function UpdatePaintingForm({ ...painting }) {
       setPrice("");
       setFileUrl(undefined);
       (document.getElementById("UpdateForm") as HTMLFormElement).reset();
-      router.push(`/Detail/${painting._id}`);
+      router.push("/Update");
     } catch (error) {
       console.error(error);
     }
@@ -124,9 +124,9 @@ export default function UpdatePaintingForm({ ...painting }) {
     <form
       id="UpdateForm"
       onSubmit={onSubmit}
-      className="px-[1.2rem] text-[1.4rem] text-blue-600 dark:text-violet-200 grid grid-rows-[repeat(9,1fr)] gap-[0.3rem]"
+      className="text-[1.6rem] font-medium text-indigo-800 dark:text-violet-200 grid grid-rows-[repeat(2,1fr_1fr_1fr_1fr_2fr)]"
     >
-      <div className="max-h-[4rem] self-center text-center">{state}</div>
+      <div className="place-self-center text-orange-600">{state}</div>
       <input
         className="bg-zinc-200 dark:bg-zinc-800 self-center rounded-3xl pl-4"
         type="text"
@@ -177,7 +177,7 @@ export default function UpdatePaintingForm({ ...painting }) {
         className="bg-zinc-200 dark:bg-zinc-800 self-center rounded-3xl pl-4"
         type="text"
         name="price"
-        placeholder={painting.price}
+        placeholder={`$ ${painting.price}`}
         onChange={(e) => setPrice(e.target.value)}
       />
 
@@ -220,11 +220,11 @@ export default function UpdatePaintingForm({ ...painting }) {
       />
       <label
         htmlFor="image"
-        className="truncate el-rtl h-[2.5rem]"
+        className="truncate el-rtl place-content-center"
       >
         {painting.image}
       </label>
-      <div className="place-self-center mb-[0.5rem]">
+      <div className="place-self-center mb-[1rem] mt-[1rem]">
         <SubmitButton isDisabled={isDisabled}>Update</SubmitButton>
       </div>
     </form>

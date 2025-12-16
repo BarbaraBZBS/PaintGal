@@ -49,6 +49,15 @@ const Detail = async ({ params }: { params: Promise<{ id: string }> }) => {
   let currentDate = new Date().toLocaleDateString("en-US", {
     month: "long",
   });
+  
+  const discount = (price: number) => {
+    if (currentDate === stringMonth) {
+      return (price *= 0.8);
+    } else {
+      return price;
+    }
+  };
+    
 
   if (paint) {
     return (

@@ -1,4 +1,4 @@
-import Painting from "@src/app/models/painting";
+import {Painting} from "@src/app/models/painting";
 import dbConnect from "@src/lib/dbConnect";
 import { NextResponse, NextRequest } from "next/server";
 import fs from "fs";

@@ -1,11 +1,11 @@
 "use client";
-import React from "react";
 import logo from "@public/images/logonobg.png";
 import Image from "next/image";
 import Link from "next/link";
 import ThemeButton from "./themeButton";
 import { AuthLog } from "./authLog";
 import { motion, Transition, useCycle } from "framer-motion";
+import { useSession } from "next-auth/react";
 
 const getSidebarVariants = (height: number) => ({
   open: {
@@ -29,8 +29,10 @@ const getSidebarVariants = (height: number) => ({
 
 export default function Header() {
   const [isOpen, toggleOpen] = useCycle(false, true);
-  const privilege = "notAdmin";
-
+  const { data: session } = useSession();
+  const status = session ? "authenticated" : "notAuthenticated";
+  // if you add a `role` on the session user, this will pick it up; otherwise defaults to notAdmin
+  const privilege = session?.user?.role === "admin" ? "admin" : "user";
   return (
     <nav className="grid grid-cols-[65%_10%_25%] md:grid-cols-[60%_10%_30%] text-[1.2rem] h-[7rem] mb-[1rem] border-gray-300 dark:border-pg border-b-[0.1rem] shadow-lg">
       <div className="self-center mx-[2rem]">
@@ -51,6 +53,8 @@ export default function Header() {
       <ul className="hidden md:grid grid-cols-[33.33%_33.33%_33.33%] justify-items-end mx-[2rem]">
         <li className="self-center">
           <AuthLog
+            status={status}
+            privilege={privilege}
             toggle={() => toggleOpen()}
             isOpen={isOpen}
           />
@@ -58,13 +62,13 @@ export default function Header() {
         <li className="self-center">
           <Link href="/">Home</Link>
         </li>
-        {privilege === "notAdmin" ? (
+        {privilege === "user" ? (
           <li className="self-center">
             <Link href="/About">About</Link>
           </li>
         ) : (
           <li className="self-center">
-            <Link href="/ManagePaintings">Manage</Link>
+            <Link href="/Dashboard">Dashboard</Link>
           </li>
         )}
       </ul>
@@ -79,6 +83,8 @@ export default function Header() {
           variants={getSidebarVariants(200)}
         />
         <AuthLog
+          status={status}
+          privilege={privilege}
           toggle={() => toggleOpen()}
           isOpen={isOpen}
         />

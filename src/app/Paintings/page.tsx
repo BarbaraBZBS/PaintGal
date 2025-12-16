@@ -1,9 +1,9 @@
-import React from "react";
 import GoBack from "../components/goBack";
 import { IPainting } from "../models/painting";
 import ManagePaintingsButton from "../components/managePaintingsButton";
 
-//ADMIN PAGE -
+//ADMIN
+
 
 export default async function Paintings() {
   const fetchPaintings = async () => {

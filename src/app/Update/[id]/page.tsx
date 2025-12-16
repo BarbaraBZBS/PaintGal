@@ -1,6 +1,7 @@
 import React from "react";
 import UpdatePaintingForm from "@src/app/components/updatePaintingForm";
 import GoBack from "@src/app/components/goBack";
+import ManagePaintingsButton from "@src/app/components/managePaintingsButton";
 
 //ADMIN PAGE -
 
@@ -28,12 +29,13 @@ const Update = async ({ params }: { params: Promise<{ id: string }> }) => {
 
   return (
     <>
-      <div className="grid justify-items-end">
+      <div className="grid grid-cols-[repeat(2,13rem)] justify-between mb-[3rem]">
         <GoBack />
+        <ManagePaintingsButton />
       </div>
 
-      <main className="grid h-[45rem] w-[80vw] mt-[5rem] grid-rows-[8%_92%] place-self-center mb-[2rem]">
-        <h1 className="text-[1.7rem] uppercase text-center">
+      <main className="grid w-[80vw] md:w-[70vw] grid-rows-[6%_86%] place-self-center mb-[2rem]">
+        <h1 className="text-[1.7rem] uppercase text-center place-content-center">
           Update <em>&quot;{painting.name}&quot;</em>
         </h1>
         <UpdatePaintingForm {...painting} />

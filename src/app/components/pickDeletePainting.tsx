@@ -4,6 +4,7 @@ import { IPainting } from "../models/painting";
 import { useRouter } from "next/navigation";
 import { ObjectId } from "mongoose";
 import GoBack from "./goBack";
+import ManagePaintingsButton from "./managePaintingsButton";
 
 //ADMIN PAGE -
 
@@ -16,8 +17,9 @@ const PickDeletePainting = ({ ...paintings }) => {
 
   return (
     <div>
-      <div className="grid justify-items-end mb-[4rem]">
+      <div className="grid grid-cols-[repeat(2,13rem)] justify-between mb-[4rem]">
         <GoBack />
+        <ManagePaintingsButton />
       </div>
 
       {paintings?.paintings.length > 0 && (
@@ -29,7 +31,7 @@ const PickDeletePainting = ({ ...paintings }) => {
             <div
               key={index}
               className="border-[0.1rem] p-2 m-2 cursor-pointer text-[1.4rem]"
-              onClick={() => handleClick(paint._id)}
+              onClick={() => handleClick(paint?._id)}
             >
               <h2 className="text-[1.6rem] text-pgnavy dark:text-pggreen">
                 {paint.name}

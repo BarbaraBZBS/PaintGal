@@ -1,6 +1,7 @@
 import React from "react";
 import GoBack from "@src/app/components/goBack";
 import DeletePainting from "@src/app/components/deletePainting";
+import ManagePaintingsButton from "@src/app/components/managePaintingsButton";
 
 //ADMIN PAGE -
 
@@ -20,8 +21,9 @@ const Delete = async ({ params }: { params: Promise<{ id: string }> }) => {
 
   return (
     <>
-      <div className="grid justify-items-end">
+      <div className="grid grid-cols-[repeat(2,13rem)] justify-between mb-[4rem]">
         <GoBack />
+        <ManagePaintingsButton />
       </div>
 
       <main className="grid h-[45rem] w-[80vw] mt-[5rem] grid-rows-[8%_92%] place-self-center mb-[2rem]">

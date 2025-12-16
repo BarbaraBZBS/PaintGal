@@ -15,7 +15,7 @@ export default async function Home() {
         className="rounded-lg m-auto"
       />
 
-      <Showcase />
+      {/*<Showcase />*/}
     </main>
   );
 }

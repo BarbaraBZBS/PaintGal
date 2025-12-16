@@ -17,6 +17,13 @@ type OpenProp = {
   isOpen?: boolean;
 };
 
+// status: 'authenticated' | 'notAuthenticated'
+// privilege: 'admin' | 'notAdmin'
+type AuthLogProps = OpenProp & {
+  status?: string;
+  privilege?: string;
+};
+
 const Path = (props: PathProps) => (
   <motion.path
     fill="transparent"
@@ -43,19 +50,21 @@ const linkVariants = {
     },
   },
 };
-const status = "notAuthenticated";
-const privilege = "notAdmin";
-
-export const AuthLog: React.FC<OpenProp> = ({ toggle, isOpen }) => {
+export const AuthLog: React.FC<AuthLogProps> = ({
+  toggle,
+  isOpen,
+  status,
+  privilege,
+}) => {
   return (
     <>
-      {privilege === "notAdmin" ? (
+      {privilege === "user" ? (
         <>
           <div className="hidden md:grid">
             {status === "notAuthenticated" ? (
-              <Link href="/Sign">Login</Link>
+              <Link href="/SignIn">Login</Link>
             ) : (
-              <Link href="/Logout">Logout</Link>
+              <Link href="/SignOut">Logout</Link>
             )}
           </div>
 
@@ -101,7 +110,7 @@ export const AuthLog: React.FC<OpenProp> = ({ toggle, isOpen }) => {
                   whileTap={{ scale: 0.9 }}
                   className="list-none md:hidden"
                 >
-                  <Link href="/Sign">Login</Link>
+                  <Link href="/SignIn">Login</Link>
                 </motion.li>
               ) : (
                 <motion.li
@@ -110,7 +119,7 @@ export const AuthLog: React.FC<OpenProp> = ({ toggle, isOpen }) => {
                   whileTap={{ scale: 0.95 }}
                   className="list-none md:hidden"
                 >
-                  <Link href="/Logout">Logout</Link>
+                  <Link href="/SignOut">Logout</Link>
                 </motion.li>
               )}
               <motion.li
@@ -136,9 +145,9 @@ export const AuthLog: React.FC<OpenProp> = ({ toggle, isOpen }) => {
         <>
           <div className="hidden md:grid">
             {status === "notAuthenticated" ? (
-              <Link href="/Sign">Login</Link>
+              <Link href="/SignIn">Login</Link>
             ) : (
-              <Link href="/Logout">Logout</Link>
+              <Link href="/SignOut">Logout</Link>
             )}
           </div>
 
@@ -184,7 +193,7 @@ export const AuthLog: React.FC<OpenProp> = ({ toggle, isOpen }) => {
                   whileTap={{ scale: 0.9 }}
                   className="list-none md:hidden"
                 >
-                  <Link href="/Sign">Login</Link>
+                  <Link href="/SignIn">Login</Link>
                 </motion.li>
               ) : (
                 <motion.li
@@ -193,7 +202,7 @@ export const AuthLog: React.FC<OpenProp> = ({ toggle, isOpen }) => {
                   whileTap={{ scale: 0.95 }}
                   className="list-none md:hidden"
                 >
-                  <Link href="/Logout">Logout</Link>
+                  <Link href="/SignOut">Logout</Link>
                 </motion.li>
               )}
               <motion.li
@@ -211,7 +220,7 @@ export const AuthLog: React.FC<OpenProp> = ({ toggle, isOpen }) => {
                 whileTap={{ scale: 0.95 }}
                 className="list-none md:hidden"
               >
-                <Link href="/ManagePaintings">Manage</Link>
+                <Link href="/Dashboard">Dashboard</Link>
               </motion.li>
             </ul>
           )}

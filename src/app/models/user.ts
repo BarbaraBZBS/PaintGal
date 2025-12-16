@@ -1,9 +1,20 @@
-import mongoose, { Document, Schema, ObjectId } from "mongoose";
+import mongoose, { model, Schema, Types } from "mongoose";
 
-const userSchema: Schema = new mongoose.Schema(
+export interface IUser {
+  _id: Types.ObjectId;
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  address: string;
+  phone: number;
+  role: string;
+}
+
+const userSchema = new Schema<IUser>(
   {
     _id: {
-      type: mongoose.Types.ObjectId,
+      type: Schema.Types.ObjectId,
     },
     email: {
       type: String,
@@ -38,17 +49,4 @@ const userSchema: Schema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export type IUser = Document & {
-  _id: ObjectId;
-  email: string;
-  password: string;
-  firstName: string;
-  lastName: string;
-  address: string;
-  phone: string;
-  role: string;
-};
-
-const User = mongoose.models.User || mongoose.model<IUser>("User", userSchema);
-
-export default User;
+export const User = mongoose.models.User || model<IUser>("User", userSchema);

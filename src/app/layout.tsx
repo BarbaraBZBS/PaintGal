@@ -6,6 +6,8 @@ import Header from "@src/app/components/header";
 import Footer from "@src/app/components/footer";
 import ThemeProvider from "@src/app/components/ThemeProvider";
 import BodyWrapper from "@src/app/hydrationWrapper";
+import Providers from "./providers";
+import { auth } from "@src/auth";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -22,11 +24,14 @@ export const viewport: Viewport = {
   // interactiveWidget: 'resizes-visual',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  //const session = await getSession();
+  const session = await auth();
+  console.log("Layout session:", session);
   return (
     <html
       lang="en"
@@ -34,16 +39,18 @@ export default function RootLayout({
     >
       <BodyWrapper className="">
         {/*<BodyWrapper className="bg-white dark:bg-[#3b394f] text-[#37352f] dark:text-[#ffffffcf]">*/}
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Header />
-          {children}
-          <Footer />
-        </ThemeProvider>
+        <Providers session={session}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Header />
+            {children}
+            <Footer />
+          </ThemeProvider>
+        </Providers>
       </BodyWrapper>
     </html>
   );
