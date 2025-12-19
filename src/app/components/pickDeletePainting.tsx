@@ -1,17 +1,14 @@
 "use client";
-import React from "react";
 import { IPainting } from "../models/painting";
 import { useRouter } from "next/navigation";
-import { ObjectId } from "mongoose";
+import { Types } from "mongoose";
 import GoBack from "./goBack";
 import ManagePaintingsButton from "./managePaintingsButton";
 
-//ADMIN PAGE -
 
 const PickDeletePainting = ({ ...paintings }) => {
   const router = useRouter();
-  const handleClick = (id: ObjectId) => {
-    //console.log("clicked");
+  const handleClick = (id: Types.ObjectId) => {
     router.push(`Delete/${id}`);
   };
 

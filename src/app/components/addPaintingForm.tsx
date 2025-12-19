@@ -97,7 +97,6 @@ export default function AddPaintingForm() {
   };
 
   return (
-    //<div className="">
     <form
       id="SubmitForm"
       onSubmit={onSubmit}
@@ -204,6 +203,5 @@ export default function AddPaintingForm() {
         <SubmitButton isDisabled={isDisabled}>Add</SubmitButton>
       </div>
     </form>
-    //</div>
   );
 }

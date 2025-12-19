@@ -1,8 +1,5 @@
 "use server";
 import { signIn, signOut } from "@src/auth";
-import dbConnect from "@src/lib/dbConnect";
-import { revalidatePath } from "next/cache";
-import { Painting } from "../models/painting";
 
 export async function doSocialLogin(formData: FormData) {
   const action = formData.get("action");
@@ -21,11 +18,9 @@ export async function doCredentialsLogin(formData: FormData) {
       password: formData.get("password") as string,
       redirect: false,
     });
-    console.log("resp", resp);
     return resp;
   } catch (error) {
     console.log(error);
-    //return null;
     throw new Error("Login failed");
   }
 }

@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useAnimate } from "framer-motion";
+import { useAnimate } from "motion/react";
 import { ObjectId } from "mongoose";
 import { useRouter } from "next/navigation";
 
@@ -20,7 +20,9 @@ export default function PurchaseButton({
       ["button", { scale: 0.8 }, { duration: 0.1, at: "<" }],
       ["button", { scale: 1 }, { duration: 0.1 }],
     ]);
-    router.push(`/Detail/${id}/checkout`);
+    setTimeout(() => {
+      router.push(`/Detail/${id}/checkout`);
+    }, 600)
   };
 
   return (

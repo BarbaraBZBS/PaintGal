@@ -30,27 +30,17 @@ export default async function proxy(request: NextRequest) {
     !isPublicRoute &&
     session?.user?.role !== "admin" &&
     nextUrl.pathname !== "/UserInfo" &&
+    nextUrl.pathname !== "/AccountUpdate" &&
     !PROTECTED_SUB_ROUTES.find((route) => nextUrl.pathname.includes(route))
   ) {
     return NextResponse.redirect(new URL("/autherror", nextUrl));
   }
-  // if(nextUrl.pathname !== "/UserInfo" && nextUrl.pathname !== "/Detail/[id]/checkout" && session?.user?.role !== "admin"){
-  //  return NextResponse.redirect(new URL("/autherror", request.url));
-  // }
 
   return NextResponse.next();
 }
 
 export const config = {
   matcher: [
-    //"/Dashboard",
-    //"/Update",
-    //"/Update/:path*",
-    //"/Paintings",
-    //"/Delete",
-    //"/Delete/:path*",
-    //"/Gallery",
-    //"/Detail/[id]/checkout",
     //this one gives error when signing out
     //"/((?!.+\\.[\\w]+$|_next).*)","/","/(api|trpc)(.*)",
     //this one seems ok

@@ -11,12 +11,10 @@ export async function GET() {
   try {
     const amount = await Painting.estimatedDocumentCount();
     const paintings = await Painting.find({});
-    //return NextResponse.json({ amount, paintings });
     return Response.json({ amount, paintings });
   } catch (err: unknown) {
     console.log(err);
     if (err instanceof Error) {
-      //return NextResponse.json({ error: err.message });
       return Response.json({ error: err.message });
     }
   }

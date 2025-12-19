@@ -1,8 +1,8 @@
 import React from "react";
-//import { IPainting } from "../models/painting";
 import PickUpdatePainting from "../components/pickUpdatePainting";
 
-//ADMIN PAGE -
+//ADMIN
+
 
 export default async function Update() {
   const fetchPaintings = async () => {

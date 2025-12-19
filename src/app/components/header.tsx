@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ThemeButton from "./themeButton";
 import { AuthLog } from "./authLog";
-import { motion, Transition, useCycle } from "framer-motion";
+import { motion, Transition, useCycle } from "motion/react";
 import { useSession } from "next-auth/react";
 
 const getSidebarVariants = (height: number) => ({
@@ -31,10 +31,9 @@ export default function Header() {
   const [isOpen, toggleOpen] = useCycle(false, true);
   const { data: session } = useSession();
   const status = session ? "authenticated" : "notAuthenticated";
-  // if you add a `role` on the session user, this will pick it up; otherwise defaults to notAdmin
   const privilege = session?.user?.role === "admin" ? "admin" : "user";
   return (
-    <nav className="grid grid-cols-[65%_10%_25%] md:grid-cols-[60%_10%_30%] text-[1.2rem] h-[7rem] mb-[1rem] border-gray-300 dark:border-pg border-b-[0.1rem] shadow-lg">
+    <nav className="grid grid-cols-[65%_10%_25%] md:grid-cols-[60%_10%_30%] text-[1.2rem] h-[7rem] mb-[1rem] border-gray-300 dark:border-pg border-b-[0.1rem] shadow-lg font-semibold">
       <div className="self-center mx-[2rem]">
         <Link href="/">
           <Image
@@ -50,7 +49,7 @@ export default function Header() {
       </div>
       <ThemeButton />
 
-      <ul className="hidden md:grid grid-cols-[33.33%_33.33%_33.33%] justify-items-end mx-[2rem]">
+      <ul className="hidden md:grid grid-cols-[repeat(4,1fr)] justify-items-center">
         <li className="self-center">
           <AuthLog
             status={status}
@@ -71,6 +70,9 @@ export default function Header() {
             <Link href="/Dashboard">Dashboard</Link>
           </li>
         )}
+        <li className="self-center">
+          <Link href="/UserInfo">Account</Link>
+        </li>
       </ul>
 
       <motion.div

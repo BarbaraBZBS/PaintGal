@@ -8,14 +8,14 @@ export default async function Home() {
       <Image
         src={gallery}
         alt="logo"
-        width={300}
+        width={400}
         height={200}
         placeholder="blur"
         priority
         className="rounded-lg m-auto"
       />
 
-      {/*<Showcase />*/}
+      <Showcase />
     </main>
   );
 }

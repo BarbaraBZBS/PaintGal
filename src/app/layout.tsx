@@ -31,14 +31,12 @@ export default async function RootLayout({
 }>) {
   //const session = await getSession();
   const session = await auth();
-  console.log("Layout session:", session);
   return (
     <html
       lang="en"
       className={ysabeauO.className}
     >
       <BodyWrapper className="">
-        {/*<BodyWrapper className="bg-white dark:bg-[#3b394f] text-[#37352f] dark:text-[#ffffffcf]">*/}
         <Providers session={session}>
           <ThemeProvider
             attribute="class"

@@ -5,10 +5,10 @@ import { signOut } from "next-auth/react";
 export default function SignOut() {
   useEffect(() => {
     const doSignOut = async () => {
-      await signOut({ callbackUrl: "/" });
+      await signOut({ redirectTo: "/" });
     };
     doSignOut();
   }, []);
 
-  return <div>Signing Out...</div>;
+  return <div>Redirecting...</div>;
 }

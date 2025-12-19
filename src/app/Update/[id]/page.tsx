@@ -1,19 +1,12 @@
-import React from "react";
 import UpdatePaintingForm from "@src/app/components/updatePaintingForm";
 import GoBack from "@src/app/components/goBack";
 import ManagePaintingsButton from "@src/app/components/managePaintingsButton";
 
-//ADMIN PAGE -
+//ADMIN
+
 
 export const revalidate = 10;
 
-//type PaintingUpdDetailProp = {
-//  params: PaintingUpdDetailParam;
-//};
-//
-//type PaintingUpdDetailParam = {
-//  id: string;
-//};
 
 const Update = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
@@ -25,7 +18,6 @@ const Update = async ({ params }: { params: Promise<{ id: string }> }) => {
     return painting;
   };
   const painting = await fetchPainting();
-  //console.log(painting);
 
   return (
     <>

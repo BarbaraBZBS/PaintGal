@@ -15,16 +15,15 @@
     "@tailwindcss/postcss": "^4.1.18",
     "async_hooks": "^1.0.0",
     "eslint-config-next": "^16.0.10",
-    "framer-motion": "^12.19.2",
     "mongodb": "^7.0.0",
     "mongoose": "^9.0.1",
+    "motion": "^12.23.26",
     "next": "^16.0.10",
     "next-auth": "5.0.0-beta.30",
     "next-themes": "0.4.6",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
-    "react-image-file-resizer": "^0.4.8",
-    "tls": "^0.0.1"
+    "react-image-file-resizer": "^0.4.8"
   },
   "devDependencies": {
     "@types/bcrypt": "^6.0.0",

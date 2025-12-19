@@ -11,7 +11,7 @@ export default function SocialLogs() {
         type="submit"
         name="action"
         value="google"
-        className="p-[1rem] text-white border-[0.3rem] border-pgnavy rounded-lg mb-[2rem] hover:bg-pgyellow hover:text-black bg-pgblue"
+        className="cursor-pointer p-[1rem] text-white border-[0.3rem] border-pgnavy rounded-lg mb-[2rem] hover:bg-pgyellow hover:text-black bg-pgblue"
       >
         Sign in with Google
       </button>
@@ -19,7 +19,7 @@ export default function SocialLogs() {
         type="submit"
         name="action"
         value="github"
-        className="p-[1rem] text-white border-[0.3rem] border-pgnavy rounded-lg mb-[2rem] hover:bg-pgyellow hover:text-black bg-pgblue"
+        className="cursor-pointer p-[1rem] text-white border-[0.3rem] border-pgnavy rounded-lg mb-[2rem] hover:bg-pgyellow hover:text-black bg-pgblue"
       >
         Sign in with Github
       </button>

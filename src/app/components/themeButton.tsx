@@ -1,7 +1,6 @@
 "use client";
-import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
-import { motion, spring as springAnimationGeneratorType } from "framer-motion";
+import { motion, spring as springAnimationGeneratorType } from "motion/react";
 
 const springAnimation = {
   type: springAnimationGeneratorType,
@@ -11,32 +10,26 @@ const springAnimation = {
 
 export default function ThemeButton() {
   const { resolvedTheme, setTheme } = useTheme();
-  //const [mounted, setMounted] = useState(false);
 
   const toggleSwitch = () =>
-    setTheme(resolvedTheme === "dark" ? "light" : "dark");
-
-  //useEffect(() => {
-  //  setMounted(true);
-  //}, []);
-  //if (!mounted) return null;
+    setTheme(resolvedTheme === "light" ? "dark" : "light");
 
   return (
     <div className="flex items-center justify-center">
       <div
         aria-label={
-          resolvedTheme === "dark" ? "Toggle Light Mode" : "Toggle Dark Mode"
+          resolvedTheme === "light" ? "Toggle Dark Mode" : "Toggle Light Mode"
         }
         title={
-          resolvedTheme === "dark" ? "Toggle Light Mode" : "Toggle Dark Mode"
+          resolvedTheme === "light" ? "Toggle Dark Mode" : "Toggle Light Mode"
         }
         data-ison={resolvedTheme}
-        className={`flex justify-start bg-pgseethrough rounded-[5rem] p-[0.25rem] w-[2.8rem] h-[2rem] cursor-pointer data-[ison=light]:justify-end data-[ison=light]:bg-pgmauve`}
+        className={`flex justify-start bg-pgmauve rounded-[5rem] p-[0.25rem] w-[2.8rem] h-[2rem] cursor-pointer data-[ison=dark]:justify-end data-[ison=dark]:bg-pgseethrough`}
         onClick={toggleSwitch}
       >
         <motion.div
           data-ison={resolvedTheme}
-          className="bg-white rounded-[4rem] w-[1.5rem] h-[1.5rem] data-[ison=light]:bg-pgblue"
+          className="bg-pgblue rounded-[4rem] w-[1.5rem] h-[1.5rem] data-[ison=dark]:bg-white"
           layout
           transition={{ ...springAnimation }}
           whileHover={{ scale: 1.2 }}

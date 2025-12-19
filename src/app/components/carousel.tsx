@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { IPainting } from "../models/painting";
 import Image from "next/image";
-import { motion, spring, useMotionValue } from "framer-motion";
+import { motion, spring, useMotionValue } from "motion/react";
 import NavButton from "./navButton";
 
 const DRAG_BUFFER = 50;
@@ -40,9 +40,9 @@ const Carousel = ({ ...paintings }) => {
   return (
     <>
       {/* each category paintings display carousel */}
-      {paintings?.paintings.length > 0 && (
+      {paintings && paintings?.paintings.length > 0 && (
         <>
-          <h1 className="uppercase mt-[1.5rem] text-[1.5rem]">
+          <h1 className="uppercase mt-[1.5rem] text-[1.5rem] font-semibold">
             {paintings?.paintings[0].category}
           </h1>
 
@@ -62,7 +62,7 @@ const Carousel = ({ ...paintings }) => {
             >
               {paintings?.paintings.map((paint: IPainting, index: number) => (
                 <motion.div
-                  key={index}
+                  key={paint._id.toString()}
                   className="aspect-video w-full h-full shrink-0 overflow-hidden"
                   animate={{
                     scale: ImgIdx === index ? 0.96 : 0.9,
@@ -108,9 +108,9 @@ const Carousel = ({ ...paintings }) => {
             </motion.div>
             {paintings?.paintings.length > 1 && (
               <div className="mt-[1.6rem] flex w-full justify-center gap-[0.8rem]">
-                {paintings?.paintings.map((_: IPainting, index: number) => (
+                {paintings?.paintings.map((paint: IPainting, index: number) => (
                   <motion.button
-                    key={index}
+                    key={paint._id.toString()}
                     animate={{
                       scale: index === ImgIdx ? [1, 1.3, 1.3, 1] : 1,
                       rotate: index === ImgIdx ? [0, 0, 270, 270] : 0,
@@ -119,7 +119,9 @@ const Carousel = ({ ...paintings }) => {
                     }}
                     whileHover={{ scale: 1.3 }}
                     className={`flex items-center justify-center rounded-full p-[0.25rem] w-[1.2rem] h-[1.2rem] ${
-                      index === ImgIdx ? "bg-pgmauve" : "bg-pgseethrough"
+                      index === ImgIdx
+                        ? "bg-pgmauve"
+                        : "bg-gray-200 dark:bg-pgseethrough"
                     } cursor-pointer`}
                     onClick={() => setImgIdx(index)}
                   ></motion.button>

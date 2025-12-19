@@ -1,7 +1,8 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import { motion, Variant, Transition } from "framer-motion";
+import { motion, Variant, Transition } from "motion/react";
+import { doLogout } from "../actions";
 
 type PathProps = {
   variants: {
@@ -13,12 +14,10 @@ type PathProps = {
 };
 
 type OpenProp = {
-  toggle?: React.MouseEventHandler<HTMLButtonElement> | undefined;
+  toggle?: React.MouseEventHandler;
   isOpen?: boolean;
 };
 
-// status: 'authenticated' | 'notAuthenticated'
-// privilege: 'admin' | 'notAdmin'
 type AuthLogProps = OpenProp & {
   status?: string;
   privilege?: string;
@@ -64,7 +63,15 @@ export const AuthLog: React.FC<AuthLogProps> = ({
             {status === "notAuthenticated" ? (
               <Link href="/SignIn">Login</Link>
             ) : (
-              <Link href="/SignOut">Logout</Link>
+              <form action={doLogout}>
+                <button
+                  className="cursor-pointer"
+                  type="submit"
+                >
+                  Logout
+                </button>
+              </form>
+              //<Link href="/SignOut">Logout</Link>
             )}
           </div>
 
@@ -73,10 +80,11 @@ export const AuthLog: React.FC<AuthLogProps> = ({
               onClick={toggle}
               className="cursor-pointer"
             >
+              {/* modified for some dark mode lightness on some browsers (Safari Mac) -23 23, 0 0 23 23-  34 40*/}
               <svg
                 width="23"
-                height="23"
-                viewBox="0 0 23 23"
+                height="34"
+                viewBox="0 0 23 40"
               >
                 <Path
                   variants={{
@@ -110,7 +118,12 @@ export const AuthLog: React.FC<AuthLogProps> = ({
                   whileTap={{ scale: 0.9 }}
                   className="list-none md:hidden"
                 >
-                  <Link href="/SignIn">Login</Link>
+                  <Link
+                    href="/SignIn"
+                    onClick={toggle}
+                  >
+                    Login
+                  </Link>
                 </motion.li>
               ) : (
                 <motion.li
@@ -119,7 +132,20 @@ export const AuthLog: React.FC<AuthLogProps> = ({
                   whileTap={{ scale: 0.95 }}
                   className="list-none md:hidden"
                 >
-                  <Link href="/SignOut">Logout</Link>
+                  {/*<Link
+                    href="/SignOut"
+                    onClick={toggle}
+                  >
+                    Logout
+                  </Link>*/}
+                  <form action={doLogout}>
+                    <button
+                      className="cursor-pointer"
+                      type="submit"
+                    >
+                      Logout
+                    </button>
+                  </form>
                 </motion.li>
               )}
               <motion.li
@@ -128,7 +154,12 @@ export const AuthLog: React.FC<AuthLogProps> = ({
                 whileTap={{ scale: 0.95 }}
                 className="list-none md:hidden"
               >
-                <Link href="/">Home</Link>
+                <Link
+                  href="/"
+                  onClick={toggle}
+                >
+                  Home
+                </Link>
               </motion.li>
               <motion.li
                 variants={linkVariants}
@@ -136,7 +167,25 @@ export const AuthLog: React.FC<AuthLogProps> = ({
                 whileTap={{ scale: 0.95 }}
                 className="list-none md:hidden"
               >
-                <Link href="/About">About</Link>
+                <Link
+                  href="/About"
+                  onClick={toggle}
+                >
+                  About
+                </Link>
+              </motion.li>
+              <motion.li
+                variants={linkVariants}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                className="list-none md:hidden"
+              >
+                <Link
+                  href="/UserInfo"
+                  onClick={toggle}
+                >
+                  Account
+                </Link>
               </motion.li>
             </ul>
           )}
@@ -147,7 +196,15 @@ export const AuthLog: React.FC<AuthLogProps> = ({
             {status === "notAuthenticated" ? (
               <Link href="/SignIn">Login</Link>
             ) : (
-              <Link href="/SignOut">Logout</Link>
+              <form action={doLogout}>
+                <button
+                  className="cursor-pointer"
+                  type="submit"
+                >
+                  Logout
+                </button>
+              </form>
+              //<Link href="/SignOut">Logout</Link>
             )}
           </div>
 
@@ -156,10 +213,11 @@ export const AuthLog: React.FC<AuthLogProps> = ({
               onClick={toggle}
               className="cursor-pointer"
             >
+              {/* modified for some dark mode lightness on some browsers (Safari Mac) -23 23, 0 0 23 23-  34 40*/}
               <svg
                 width="23"
-                height="23"
-                viewBox="0 0 23 23"
+                height="34"
+                viewBox="0 0 23 40"
               >
                 <Path
                   variants={{
@@ -193,7 +251,12 @@ export const AuthLog: React.FC<AuthLogProps> = ({
                   whileTap={{ scale: 0.9 }}
                   className="list-none md:hidden"
                 >
-                  <Link href="/SignIn">Login</Link>
+                  <Link
+                    href="/SignIn"
+                    onClick={toggle}
+                  >
+                    Login
+                  </Link>
                 </motion.li>
               ) : (
                 <motion.li
@@ -202,7 +265,20 @@ export const AuthLog: React.FC<AuthLogProps> = ({
                   whileTap={{ scale: 0.95 }}
                   className="list-none md:hidden"
                 >
-                  <Link href="/SignOut">Logout</Link>
+                  {/*<Link
+                    href="/SignOut"
+                    onClick={toggle}
+                  >
+                    Logout
+                  </Link>*/}
+                  <form action={doLogout}>
+                    <button
+                      className="cursor-pointer"
+                      type="submit"
+                    >
+                      Logout
+                    </button>
+                  </form>
                 </motion.li>
               )}
               <motion.li
@@ -211,7 +287,12 @@ export const AuthLog: React.FC<AuthLogProps> = ({
                 whileTap={{ scale: 0.95 }}
                 className="list-none md:hidden"
               >
-                <Link href="/">Home</Link>
+                <Link
+                  href="/"
+                  onClick={toggle}
+                >
+                  Home
+                </Link>
               </motion.li>
 
               <motion.li
@@ -220,7 +301,25 @@ export const AuthLog: React.FC<AuthLogProps> = ({
                 whileTap={{ scale: 0.95 }}
                 className="list-none md:hidden"
               >
-                <Link href="/Dashboard">Dashboard</Link>
+                <Link
+                  href="/Dashboard"
+                  onClick={toggle}
+                >
+                  Dashboard
+                </Link>
+              </motion.li>
+              <motion.li
+                variants={linkVariants}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                className="list-none md:hidden"
+              >
+                <Link
+                  href="/UserInfo"
+                  onClick={toggle}
+                >
+                  Account
+                </Link>
               </motion.li>
             </ul>
           )}

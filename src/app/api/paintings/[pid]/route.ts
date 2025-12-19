@@ -6,7 +6,6 @@ import path from "path";
 import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 import { writeFile } from "fs/promises";
-import mongoose from "mongoose";
 
 export async function GET(
   req: NextRequest,

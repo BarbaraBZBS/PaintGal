@@ -1,9 +1,9 @@
-import React from "react";
 import GoBack from "@src/app/components/goBack";
 import DeletePainting from "@src/app/components/deletePainting";
 import ManagePaintingsButton from "@src/app/components/managePaintingsButton";
 
-//ADMIN PAGE -
+//ADMIN
+
 
 export const revalidate = 10;
 

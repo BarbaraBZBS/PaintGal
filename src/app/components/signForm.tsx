@@ -48,7 +48,6 @@ export default function SignForm() {
           </h1>
 
           <form
-            //action=""
             className="grid gap-3 text-[1.5rem]"
             id="newUserForm"
             onSubmit={onSubmit}

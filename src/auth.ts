@@ -37,22 +37,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     }),
     // ...add more providers here
     CredentialsProvider({
-      //name: "Credentials",
       credentials: {
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
-      //async authorize(credentials, request) {
-      // The name to display on the sign in form (e.g. "Sign in with...")
-      //name: "Credentials",
-      // `credentials` is used to generate a form on the sign in page.
-      // You can specify which fields should be submitted, by adding keys to the `credentials` object.
-      // e.g. domain, username, password, 2FA token, etc.
-      // You can pass any HTML attribute to the <input> tag through the object.
-      //credentials: {
-      //email: { label: "email", type: "text", placeholder: "jsmith" },
-      //password: { label: "Password", type: "password" }
-      //},
       async authorize(credentials) {
         const { email, password } = credentials as {
           email: string;
@@ -96,51 +84,12 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           );
         }
       },
-      //
-      //        const res = await fetch(
-      //          `${process.env.NEXT_PUBLIC_API}/auth/login`,
-      //          {
-      //            method: "POST",
-      //            headers: {
-      //              "Content-Type": "application/json",
-      //            },
-      //            body: JSON.stringify({
-      //              email: credentials.email,
-      //              password: credentials.password,
-      //            }),
-      //          }
-      //        );
-      //
-      //        const user = await res.json();
-      //
-      //        if (res.ok && user) {
-      //          return user;
-      //        } else {
-      //          return null;
-      //        }
-      //} catch (error) {
-      //  console.log("Authorize error:", error);
-      //  //return null;
-      //}
-      //},
     }),
   ],
   session: {
     strategy: "jwt",
   },
   callbacks: {
-  //  session({ session, token, user }) {
-  //    // `session.user.address` is now a valid property, and will be type-checked
-  //    // in places like `useSession().data.user` or `auth().user`
-  //    return {
-  //      ...session,
-  //      user: {
-  //        ...session.user,
-  //        address: user.address,
-  //      },
-  //    }
-  //  },
-  //},
     async jwt({ token, user }) {
       if (user) {
         token._id = user._id;
@@ -154,14 +103,20 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       return token;
     },
     async session({ session, token }) {
-      if (session.user) {
-        session.user._id = token._id as string;
-        session.user.email = token.email as string;
-        session.user.firstName = token.firstName as string;
-        session.user.lastName = token.lastName as string;
-        session.user.address = token.address as string;
-        session.user.phone = token.phone as string;
-        session.user.role = token.role as string;
+      try {
+        await dbConnect();
+        const user = await User.findById(token._id);
+        if (user && session.user) {
+          session.user._id = user._id.toString();
+          session.user.email = user.email;
+          session.user.firstName = user.firstName;
+          session.user.lastName = user.lastName;
+          session.user.address = user.address;
+          session.user.phone = user.phone.toString();
+          session.user.role = user.role;
+        }
+      } catch (error) {
+        console.error("Session callback error:", error);
       }
       return session;
     },

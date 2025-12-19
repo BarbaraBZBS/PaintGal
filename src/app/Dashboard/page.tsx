@@ -1,4 +1,3 @@
-import React from "react";
 import Link from "next/link";
 import GoBack from "@src/app/components/goBack";
 

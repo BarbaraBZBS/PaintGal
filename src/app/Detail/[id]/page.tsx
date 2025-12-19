@@ -1,4 +1,3 @@
-import React from "react";
 import Image from "next/image";
 import PurchaseButton from "@src/app/components/purchaseButton";
 
@@ -27,41 +26,22 @@ const Detail = async ({ params }: { params: Promise<{ id: string }> }) => {
 
   const paint = await fetchPainting();
 
-  //full month discount
-  let months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-  let nextMonth = ((new Date().getMonth() + 1) % 12) + 1;
-  let stringMonth = months[nextMonth];
-
   //few days discount
   let currentDate = new Date().toLocaleDateString("en-US", {
     month: "long",
   });
   
   const discount = (price: number) => {
-    if (currentDate === stringMonth) {
-      return (price *= 0.8);
-    } else {
-      return price;
+    if (!!paint.onSale) {
+      return paint.price - (paint.price * 0.20)
     }
+    return price
   };
     
 
   if (paint) {
     return (
-      <main className="grid h-[65vh] lg:h-[90vh] lg:min-h-[80vh] w-[80vw] mt-[5rem] grid-rows-[10%_25%_45%_20%] lg:grid-rows-[8%_20%_60%_12%] justify-self-center">
+      <main className="grid h-[65vh] font-medium lg:h-[90vh] lg:min-h-[80vh] w-[80vw] mt-[5rem] grid-rows-[10%_25%_45%_20%] lg:grid-rows-[8%_20%_60%_12%] justify-self-center">
         <h1 className="text-[1.7rem] uppercase text-center font-semibold">
           {paint.name}
         </h1>
@@ -69,8 +49,20 @@ const Detail = async ({ params }: { params: Promise<{ id: string }> }) => {
           <p>&quot;{paint.description}&quot;</p>
           <h3>By {paint.artist}</h3>
           <p>
-            <span>$ </span>
-            {paint.price}
+            <span>$</span>
+            {paint.onSale === true ? (
+              <>
+                {discount(paint.price)} &nbsp;&nbsp;&nbsp;
+                <span className="line-through decoration-pgred">
+                  &nbsp;${paint.price}&nbsp;
+                </span><span>&nbsp;</span>
+                <span className="text-[1rem] text-pgred border-[0.1rem] rounded-2xl p-[0.2rem]">
+                  -20%
+                </span>
+              </>
+            ) : (
+              paint.price
+            )}
           </p>
           <p className="text-green-800 dark:text-pggreen">
             {paint.onSale === true ? `On Sale until ${currentDate} 30th!` : ""}

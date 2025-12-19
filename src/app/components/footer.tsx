@@ -1,5 +1,4 @@
 import Image from "next/image";
-import React from "react";
 import logo from "@public/images/logonobg.png";
 import Link from "next/link";
 
@@ -15,7 +14,7 @@ export default function Footer() {
         priority
         className="object-cover m-[1rem] rounded-md justify-self-center grayscale invert-100"
       />
-      <div className="grid w-full h-auto">
+      <div className="grid w-full h-auto font-semibold">
         <p className="text-[1.3rem] justify-self-center">
           ©️ 2024 PaintGal. All rights reserved
         </p>

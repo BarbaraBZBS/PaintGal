@@ -1,8 +1,7 @@
-import React from "react";
-//import { IPainting } from "../models/painting";
 import PickDeletePainting from "../components/pickDeletePainting";
 
-//ADMIN PAGE -
+//ADMIN
+
 
 export default async function Delete() {
   const fetchPaintings = async () => {

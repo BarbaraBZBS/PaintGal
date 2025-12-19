@@ -10,7 +10,7 @@ export interface IPainting {
   image: string;
   isNewPiece: boolean;
   onSale: boolean;
-};
+}
 
 const paintingSchema = new Schema<IPainting>(
   {
@@ -52,6 +52,5 @@ const paintingSchema = new Schema<IPainting>(
   { timestamps: true }
 );
 
-
-
-export const Painting = mongoose.models.Painting || model<IPainting>("Painting", paintingSchema);
+export const Painting =
+  mongoose.models.Painting || model<IPainting>("Painting", paintingSchema);
