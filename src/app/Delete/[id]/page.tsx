@@ -26,7 +26,7 @@ const Delete = async ({ params }: { params: Promise<{ id: string }> }) => {
         <ManagePaintingsButton />
       </div>
 
-      <main className="grid h-[45rem] w-[80vw] mt-[5rem] grid-rows-[8%_92%] place-self-center mb-[2rem]">
+      <main className="grid h-[60vh] mt-[5rem] place-content-center place-self-center mb-[2rem]">
         <h1 className="text-[1.7rem] uppercase text-center">
           Delete <em>&quot;{painting.name}&quot;</em> ?
         </h1>

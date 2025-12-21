@@ -4,7 +4,7 @@ import { motion, spring as springAnimationGeneratorType } from "motion/react";
 
 const springAnimation = {
   type: springAnimationGeneratorType,
-  stiffness: 700,
+  stiffness: 200,
   damping: 30,
 };
 
@@ -31,7 +31,7 @@ export default function ThemeButton() {
           data-ison={resolvedTheme}
           className="bg-pgblue rounded-[4rem] w-[1.5rem] h-[1.5rem] data-[ison=dark]:bg-white"
           layout
-          transition={{ ...springAnimation }}
+          transition={{...springAnimation}}
           whileHover={{ scale: 1.2 }}
         />
       </div>

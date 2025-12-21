@@ -40,8 +40,12 @@ const Carousel = ({ ...paintings }) => {
   return (
     <>
       {/* each category paintings display carousel */}
-      {paintings && paintings?.paintings.length > 0 && (
-        <>
+      {isLoaded &&paintings && paintings?.paintings.length > 0 && (
+        <motion.div
+        initial={{y: 80, opacity: 0 }}
+        animate={{y: 0, opacity: 1 }}
+        transition={{duration: 0.3, delay: 0.6, type: "spring", stiffness: 100}}
+        >
           <h1 className="uppercase mt-[1.5rem] text-[1.5rem] font-semibold">
             {paintings?.paintings[0].category}
           </h1>
@@ -129,7 +133,7 @@ const Carousel = ({ ...paintings }) => {
               </div>
             )}
           </div>
-        </>
+        </motion.div>
       )}
     </>
   );

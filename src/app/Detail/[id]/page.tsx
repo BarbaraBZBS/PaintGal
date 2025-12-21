@@ -41,7 +41,7 @@ const Detail = async ({ params }: { params: Promise<{ id: string }> }) => {
 
   if (paint) {
     return (
-      <main className="grid h-[65vh] font-medium lg:h-[90vh] lg:min-h-[80vh] w-[80vw] mt-[5rem] grid-rows-[10%_25%_45%_20%] lg:grid-rows-[8%_20%_60%_12%] justify-self-center">
+      <main className="grid h-[65vh] font-medium lg:h-[90vh] lg:min-h-[80vh] mt-[5rem] grid-rows-[10%_25%_45%_20%] lg:grid-rows-[8%_20%_60%_12%] place-content-center p-[4rem]">
         <h1 className="text-[1.7rem] uppercase text-center font-semibold">
           {paint.name}
         </h1>

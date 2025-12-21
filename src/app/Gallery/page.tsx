@@ -15,7 +15,7 @@ export default function Gallery() {
         <ManagePaintingsButton />
       </div>
 
-      <main className="grid w-[80vw] md:w-[70vw] grid-rows-[6%_86%] place-self-center mb-[2rem]">
+      <main className="grid grid-rows-[6%_86%] place-content-center mb-[2rem]">
         <h1 className="text-[1.7rem] uppercase text-center place-content-center">
           Add a new Piece
         </h1>

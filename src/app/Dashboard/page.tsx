@@ -11,7 +11,7 @@ export default function ManagePaintings() {
         <div className="grid justify-items-end mb-[4rem]">
           <GoBack />
         </div>
-        <div className="grid place-content-center text-[2rem] text-pgnavy dark:text-pggreen gap-[3rem]">
+        <div className="grid h-[60vh] place-content-center text-[2rem] text-pgnavy dark:text-pggreen gap-[3rem]">
           <Link href="/Paintings">Paintings List</Link>
           <Link href="/Gallery">Add Painting</Link>
           <Link href="/Update">Update Painting</Link>
