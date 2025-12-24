@@ -124,7 +124,7 @@ export default function UpdatePaintingForm({ ...painting }) {
     <form
       id="UpdateForm"
       onSubmit={onSubmit}
-      className="text-[1.6rem] font-medium text-indigo-800 dark:text-violet-200 grid grid-rows-[repeat(2,1fr_1fr_1fr_1fr_2fr)]"
+      className="text-[clamp(1.6rem,3vw,1.8rem)] font-medium text-indigo-800 dark:text-violet-200 grid grid-rows-[repeat(2,1fr_1fr_1fr_1fr_2fr)] w-[60vw]"
     >
       <div className="place-self-center text-orange-600">{state}</div>
       <input

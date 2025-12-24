@@ -6,6 +6,7 @@ import ThemeButton from "./themeButton";
 import { AuthLog } from "./authLog";
 import { motion, Transition, useCycle } from "motion/react";
 import { useSession } from "next-auth/react";
+import AdminNavigation from "./adminNavigation";
 
 const getSidebarVariants = (height: number) => ({
   open: {
@@ -33,8 +34,10 @@ export default function Header() {
   const status = session ? "authenticated" : "notAuthenticated";
   const privilege = session?.user?.role === "admin" ? "admin" : "user";
   return (
-    <nav className="grid grid-cols-[65%_10%_25%] md:grid-cols-[60%_10%_30%] text-[1.2rem] h-[7rem] mb-[1rem] border-gray-300 dark:border-pg border-b-[0.1rem] shadow-lg font-semibold">
-      <div className="self-center mx-[2rem]">
+    <nav
+      className="grid grid-cols-[65%_10%_25%] md:grid-cols-[56%_6%_37%] text-[1.4rem] md:text-[1.5rem] lg:text-[1.8rem] h-[7rem] mb-[1rem] border-gray-300 dark:border-pg border-b-[0.1rem] shadow-lg font-semibold"
+    >
+      <div className="grid place-content-center grid-cols-[75%_25%] self-center mx-[2rem] gap-2 md:grid-cols-[50%_50%] lg:grid-cols-[70%_30%]">
         <Link href="/">
           <Image
             src={logo}
@@ -46,11 +49,12 @@ export default function Header() {
             className="object-cover"
           />
         </Link>
+        <AdminNavigation />
       </div>
       <ThemeButton />
 
       <ul className="hidden md:grid grid-cols-[repeat(4,1fr)] justify-items-center">
-        <li className="self-center">
+        <li className="self-center z-30">
           <AuthLog
             status={status}
             privilege={privilege}

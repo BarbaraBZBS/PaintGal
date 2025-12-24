@@ -2,8 +2,6 @@
 import { IPainting } from "../models/painting";
 import { useRouter } from "next/navigation";
 import { Types } from "mongoose";
-import GoBack from "./goBack";
-import ManagePaintingsButton from "./managePaintingsButton";
 
 
 const PickDeletePainting = ({ ...paintings }) => {
@@ -13,24 +11,20 @@ const PickDeletePainting = ({ ...paintings }) => {
   };
 
   return (
-    <div>
-      <div className="grid grid-cols-[repeat(2,13rem)] justify-between mb-[4rem]">
-        <GoBack />
-        <ManagePaintingsButton />
-      </div>
+    <div className="grid w-screen my-[3rem]">
 
       {paintings?.paintings.length > 0 && (
         <>
-          <h1 className="text-[1.7rem] uppercase text-center mb-[5rem] font-semibold">
+          <h1 className="text-[clamp(1.7rem,3vw,2rem)] uppercase text-center mb-[5rem] font-semibold">
             Paintings (Delete)
           </h1>
           {paintings?.paintings.map((paint: IPainting, index: number) => (
             <div
               key={index}
-              className="border-[0.1rem] p-2 m-2 cursor-pointer text-[1.4rem]"
+              className="border-[0.1rem] p-2 m-2 lg:mx-16 cursor-pointer text-[clamp(1.4rem,3vw,1.6rem)]"
               onClick={() => handleClick(paint?._id)}
             >
-              <h2 className="text-[1.6rem] text-pgnavy dark:text-pggreen">
+              <h2 className="text-[clamp(1.6rem,3vw,1.8rem)] text-pgnavy dark:text-pggreen">
                 {paint.name}
               </h2>
               <h3>By {paint.artist}</h3>

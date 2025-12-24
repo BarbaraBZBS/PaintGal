@@ -1,6 +1,4 @@
-import GoBack from "@src/app/components/goBack";
 import DeletePainting from "@src/app/components/deletePainting";
-import ManagePaintingsButton from "@src/app/components/managePaintingsButton";
 
 //ADMIN
 
@@ -20,19 +18,15 @@ const Delete = async ({ params }: { params: Promise<{ id: string }> }) => {
   const painting = await fetchPainting();
 
   return (
-    <>
-      <div className="grid grid-cols-[repeat(2,13rem)] justify-between mb-[4rem]">
-        <GoBack />
-        <ManagePaintingsButton />
-      </div>
+    <div className="grid w-screen">
 
-      <main className="grid h-[60vh] mt-[5rem] place-content-center place-self-center mb-[2rem]">
-        <h1 className="text-[1.7rem] uppercase text-center">
+      <main className="grid grid-rows-[40%_60%] place-content-center self-center h-[35rem]">
+        <h1 className=" text-[clamp(1.7rem,3vw,2rem)] uppercase text-center place-content-center">
           Delete <em>&quot;{painting.name}&quot;</em> ?
         </h1>
         <DeletePainting {...painting} />
       </main>
-    </>
+    </div>
   );
 };
 

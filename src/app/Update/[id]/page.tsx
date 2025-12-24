@@ -1,6 +1,4 @@
 import UpdatePaintingForm from "@src/app/components/updatePaintingForm";
-import GoBack from "@src/app/components/goBack";
-import ManagePaintingsButton from "@src/app/components/managePaintingsButton";
 
 //ADMIN
 
@@ -20,19 +18,15 @@ const Update = async ({ params }: { params: Promise<{ id: string }> }) => {
   const painting = await fetchPainting();
 
   return (
-    <>
-      <div className="grid grid-cols-[repeat(2,13rem)] justify-between mb-[3rem]">
-        <GoBack />
-        <ManagePaintingsButton />
-      </div>
+    <div className="grid w-screen">
 
-      <main className="grid grid-rows-[6%_86%] place-content-center mb-[2rem]">
-        <h1 className="text-[1.7rem] uppercase text-center place-content-center">
+      <main className="grid grid-rows-[6%_86%] place-content-center h-[66rem]">
+        <h1 className="text-[clamp(1.7rem,3vw,2rem)] uppercase text-center place-content-center">
           Update <em>&quot;{painting.name}&quot;</em>
         </h1>
         <UpdatePaintingForm {...painting} />
       </main>
-    </>
+    </div>
   );
 };
 

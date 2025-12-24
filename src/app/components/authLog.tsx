@@ -78,6 +78,8 @@ export const AuthLog: React.FC<AuthLogProps> = ({
           <div className="md:hidden h-full grid place-items-center relative">
             <button
               onClick={toggle}
+              aria-label="Toggle Menu"
+              title="Toggle Menu"
               className="cursor-pointer"
             >
               {/* modified for some dark mode lightness on some browsers (Safari Mac) -23 23, 0 0 23 23-  34 40*/}
@@ -110,7 +112,7 @@ export const AuthLog: React.FC<AuthLogProps> = ({
             </button>
           </div>
           {isOpen && (
-            <ul className="h-[15rem] w-[20vw] right-[2.5vw] grid absolute place-items-center rounded-b-lg text-[1.3rem]">
+            <ul className="h-[15rem] w-[20vw] right-[2.5vw] grid absolute z-50 place-items-center rounded-b-lg text-[1.4rem]">
               {status === "notAuthenticated" ? (
                 <motion.li
                   variants={linkVariants}
@@ -211,6 +213,8 @@ export const AuthLog: React.FC<AuthLogProps> = ({
           <div className="md:hidden h-full grid place-items-center relative">
             <button
               onClick={toggle}
+              aria-label="Toggle Menu"
+              title="Toggle Menu"
               className="cursor-pointer"
             >
               {/* modified for some dark mode lightness on some browsers (Safari Mac) -23 23, 0 0 23 23-  34 40*/}
@@ -243,7 +247,7 @@ export const AuthLog: React.FC<AuthLogProps> = ({
             </button>
           </div>
           {isOpen && (
-            <ul className="h-[15rem] w-[20vw] right-[2.5vw] grid absolute place-items-center rounded-b-lg text-[1.3rem]">
+            <ul className="h-[15rem] w-[20vw] right-[2.5vw] grid z-50 absolute place-items-center rounded-b-lg text-[1.4rem]">
               {status === "notAuthenticated" ? (
                 <motion.li
                   variants={linkVariants}

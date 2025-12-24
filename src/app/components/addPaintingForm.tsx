@@ -100,7 +100,7 @@ export default function AddPaintingForm() {
     <form
       id="SubmitForm"
       onSubmit={onSubmit}
-      className="text-[1.6rem] font-medium text-indigo-800 dark:text-violet-200 grid grid-rows-[repeat(4,1fr)_2fr_repeat(3,1fr)_2fr]"
+      className="text-[clamp(1.6rem,3vw,1.8rem)] font-medium text-indigo-800 dark:text-violet-200 grid grid-rows-[repeat(4,1fr)_2fr_repeat(3,1fr)_2fr] w-[60vw]"
     >
       <div className="max-h-[4rem] self-center text-center text-orange-600">
         {state}

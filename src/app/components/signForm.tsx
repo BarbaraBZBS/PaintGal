@@ -40,15 +40,15 @@ export default function SignForm() {
   }
 
   return (
-    <main>
-      <div className="grid place-items-center h-screen">
+    <main className="grid place-self-center min-h-[48rem]">
+      <div className="grid place-items-center place-self-center">
         <div className="p-[3rem] shadow-card dark:shadow-indigo-400 border-t-8 rounded-3xl border-pgblue">
-          <h1 className="text-center text-[2rem] m-[2rem] font-bold">
+          <h1 className="text-center text-[clamp(2rem,3vw,2.3rem)] m-[2rem] font-bold">
             Log In To Account
           </h1>
 
           <form
-            className="grid gap-3 text-[1.5rem]"
+            className="grid gap-3 text-[clamp(1.5rem,3vw,1.7rem)]"
             id="newUserForm"
             onSubmit={onSubmit}
           >
@@ -81,7 +81,7 @@ export default function SignForm() {
             )}
             <Link
               href="/Register"
-              className="place-self-end text-[1.5rem] "
+              className="place-self-end text-[clamp(1.5rem,3vw,1.7rem]"
             >
               Need to create an account?{" "}
               <span className="underline decoration-2 decoration-indigo-500">

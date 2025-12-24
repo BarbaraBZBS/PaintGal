@@ -40,17 +40,22 @@ const Carousel = ({ ...paintings }) => {
   return (
     <>
       {/* each category paintings display carousel */}
-      {isLoaded &&paintings && paintings?.paintings.length > 0 && (
+      {isLoaded && paintings && paintings?.paintings.length > 0 && (
         <motion.div
-        initial={{y: 80, opacity: 0 }}
-        animate={{y: 0, opacity: 1 }}
-        transition={{duration: 0.3, delay: 0.6, type: "spring", stiffness: 100}}
+          initial={{ y: 80, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{
+            duration: 0.3,
+            delay: 0.6,
+            type: "spring",
+            stiffness: 100,
+          }}
         >
-          <h1 className="uppercase mt-[1.5rem] text-[1.5rem] font-semibold">
+          <h1 className="uppercase mt-[1.5rem] text-[clamp(1.5rem,4vw,2rem)] font-semibold md:text-center">
             {paintings?.paintings[0].category}
           </h1>
 
-          <div className="relative w-[84vw] min-h-[22.5rem] overflow-hidden py-[2rem]">
+          <div className="text-[clamp(1rem,4vw,1.9rem)] relative w-[84vw] min-h-[22.5rem] overflow-hidden py-[2rem]">
             <motion.div
               drag="x"
               dragPropagation
@@ -97,10 +102,10 @@ const Carousel = ({ ...paintings }) => {
                       )}
                       <div className="absolute bottom-[1rem] left-[0.5rem]">
                         <NavButton id={paint._id}>
-                          <h2 className="uppercase text-[1.2rem] drop-shadow-darkenTxt">
+                          <h2 className="uppercase text-[clamp(1.2rem,3vw,1.4rem)] drop-shadow-darkenTxt">
                             {paint.artist}
                           </h2>
-                          <h3 className="uppercase text-[1.2rem] drop-shadow-darkenTxt">
+                          <h3 className="uppercase text-[clamp(1.2rem,3vw,1.4rem)] drop-shadow-darkenTxt">
                             {paint.name}
                           </h3>
                         </NavButton>

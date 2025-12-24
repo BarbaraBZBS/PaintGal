@@ -12,13 +12,5 @@ const config: Config = {
     "!./node_modules",
   ],
   darkMode: "class",
-  theme: {
-    extend: {
-      objectPosition: {
-        "center-up": "50% 35%",
-        "center-down": "50% 75%",
-      },
-    },
-  },
 };
 export default config;

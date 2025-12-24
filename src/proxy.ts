@@ -2,7 +2,6 @@ import { NextResponse, NextRequest } from "next/server";
 import { auth } from "@src/auth";
 
 import  { PUBLIC_ROUTES, LOGIN, ROOT } from "@src/lib/routes";
-import { PROTECTED_SUB_ROUTES } from "@src/lib/routes";
 
 // This function can be marked `async` if using `await` inside
 export default async function proxy(request: NextRequest) {
@@ -14,7 +13,7 @@ export default async function proxy(request: NextRequest) {
   const isAuthenticated = !!session?.user;
   console.log("isAuthenticated:", isAuthenticated, "Request URL:", nextUrl.pathname);
 
-  const isPublicRoute = (PUBLIC_ROUTES.find((route) => nextUrl.pathname.startsWith(route)) || nextUrl.pathname === ROOT) && (!PROTECTED_SUB_ROUTES.find((route) => nextUrl.pathname.includes(route)));
+  const isPublicRoute = (PUBLIC_ROUTES.find((route) => nextUrl.pathname.startsWith(route)) || nextUrl.pathname === ROOT) ;
   console.log(
     "isPublicRoute:",
     isPublicRoute,
@@ -30,9 +29,9 @@ export default async function proxy(request: NextRequest) {
     !isPublicRoute &&
     session?.user?.role !== "admin" &&
     nextUrl.pathname !== "/UserInfo" &&
-    nextUrl.pathname !== "/AccountUpdate" &&
-    !PROTECTED_SUB_ROUTES.find((route) => nextUrl.pathname.includes(route))
-  ) {
+    nextUrl.pathname !== "/Cart" &&
+    nextUrl.pathname !== "/Checkout" &&
+    nextUrl.pathname !== "/AccountUpdate" ) {
     return NextResponse.redirect(new URL("/autherror", nextUrl));
   }
 

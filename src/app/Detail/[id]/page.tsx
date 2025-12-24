@@ -1,9 +1,11 @@
 import Image from "next/image";
 import PurchaseButton from "@src/app/components/purchaseButton";
+import { auth } from "@src/auth";
 
 export const revalidate = 10;
 
 const Detail = async ({ params }: { params: Promise<{ id: string }> }) => {
+  const session = await auth();
   const { id } = await params;
   const fetchPainting = async () => {
     try {
@@ -30,22 +32,21 @@ const Detail = async ({ params }: { params: Promise<{ id: string }> }) => {
   let currentDate = new Date().toLocaleDateString("en-US", {
     month: "long",
   });
-  
+
   const discount = (price: number) => {
     if (!!paint.onSale) {
-      return paint.price - (paint.price * 0.20)
+      return paint.price - paint.price * 0.2;
     }
-    return price
+    return price;
   };
-    
 
   if (paint) {
     return (
-      <main className="grid h-[65vh] font-medium lg:h-[90vh] lg:min-h-[80vh] mt-[5rem] grid-rows-[10%_25%_45%_20%] lg:grid-rows-[8%_20%_60%_12%] place-content-center p-[4rem]">
-        <h1 className="text-[1.7rem] uppercase text-center font-semibold">
+      <main className="grid grid-rows-[10%_25%_45%_20%] h-[50rem] font-medium lg:h-[90rem] lg:grid-rows-[8%_20%_60%_12%] place-self-center place-content-center m-[2rem]">
+        <h1 className="text-[clamp(1.7rem,4vw,2rem)] uppercase text-center place-self-center font-semibold">
           {paint.name}
         </h1>
-        <div className="text-[1.4rem] lg:text-[1.55rem]">
+        <div className="text-[clamp(1.4rem,3vw,1.7rem)] place-self-center">
           <p>&quot;{paint.description}&quot;</p>
           <h3>By {paint.artist}</h3>
           <p>
@@ -55,7 +56,8 @@ const Detail = async ({ params }: { params: Promise<{ id: string }> }) => {
                 {discount(paint.price)} &nbsp;&nbsp;&nbsp;
                 <span className="line-through decoration-pgred">
                   &nbsp;${paint.price}&nbsp;
-                </span><span>&nbsp;</span>
+                </span>
+                <span>&nbsp;</span>
                 <span className="text-[1rem] text-pgred border-[0.1rem] rounded-2xl p-[0.2rem]">
                   -20%
                 </span>
@@ -71,27 +73,35 @@ const Detail = async ({ params }: { params: Promise<{ id: string }> }) => {
           <p>{paint.isNewPiece === true ? "NEW" : ""}</p>
         </div>
 
-        <Image
-          src={paint.image}
-          alt={`${paint.name}`}
-          width={0}
-          height={0}
-          priority
-          placeholder="empty"
-          className="w-full h-full rounded-xl object-cover"
-        />
-
-        <div className="place-self-center">
-          <PurchaseButton
-            children="Buy"
-            id={paint._id}
+        <div className="mt-[1rem] px-[2.5rem]">
+          <Image
+            src={paint.image}
+            alt={`${paint.name}`}
+            width={0}
+            height={0}
+            priority
+            placeholder="empty"
+            className="w-full h-full rounded-xl object-cover"
           />
         </div>
+
+        {session?.user?.role === "user" && (
+          <div className="place-self-center">
+            <PurchaseButton
+              children="Buy"
+              painting={{
+                _id: paint._id,
+                name: paint.name,
+                price: discount(paint.price),
+              }}
+            />
+          </div>
+        )}
       </main>
     );
   } else {
     return (
-      <div className="grid">
+      <div className="grid text-[clamp(1.4rem,3vw,1.7rem)]">
         <p>Painting details could not be loaded</p>
       </div>
     );

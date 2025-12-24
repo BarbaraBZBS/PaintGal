@@ -4,8 +4,8 @@ import { motion } from "motion/react";
 
 export default function Feedback() {
   return (
-    <main className="grid place-content-center text-[1.5rem] p-[4rem] mb-[2rem]">
-      <h1 className="text-[2.5rem] mb-[3rem]">Feedback</h1>
+    <main className="grid place-content-center text-[clamp(1.5rem,3vw,1.8rem)] p-[4rem] mb-[2rem]">
+      <h1 className="text-[clamp(2.5rem,3vw,3rem)] mb-[3rem]">Feedback</h1>
       <p className="pt-[2rem]">
         Would you consider sharing your thoughts on our art shop’s latest
         collection?
@@ -25,7 +25,7 @@ export default function Feedback() {
         Would you recommend our art shop to friends who enjoy creative
         activities and hobbies?
       </p>
-      <p className="pt-[2rem] text-[1.7rem]">
+      <p className="pt-[2rem] text-[clamp(1.7rem,3vw,2rem)]">
         If you have any suggestions or comments, please let us know, we would be
         happy to hear from you!
       </p>
@@ -72,8 +72,7 @@ export default function Feedback() {
           </div>
           <div className="">
             <motion.button
-                whileTap={{ scale: 0.8 }}
-            
+              whileTap={{ scale: 0.8 }}
               type="submit"
               className="cursor-pointer p-[1rem] bg-pgblue text-white border-pgnavy border-[0.3rem] rounded-lg transition-colors m-[1rem] hover:bg-pgyellow hover:border-pgnavy hover:border-[0.3rem] hover:text-black"
             >

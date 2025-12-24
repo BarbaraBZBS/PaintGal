@@ -86,9 +86,11 @@ function AccountUpdate() {
   };
 
   return (
-    <div className="grid place-content-center text-center text-[1.5rem] p-[2rem]">
-      <h1 className="text-[3rem] mb-[3rem]">Account Update</h1>
-      <p className="text-[1.6rem] mb-[2rem]">
+    <div className="grid place-content-center text-center text-[clamp(1.5rem,3vw,1.8rem)] p-[2rem]">
+      <h1 className="text-[clamp(3rem,3vw,3.5rem)] mb-[3rem]">
+        Account Update
+      </h1>
+      <p className="text-[clamp(1.6rem,3vw,2rem)] mb-[2rem]">
         Need to make some modifications?
       </p>
       <form
@@ -143,8 +145,10 @@ function AccountUpdate() {
         />
         <SubmitButton isDisabled={isDisabled}>Update</SubmitButton>
       </form>
-      <h2 className="text-[2rem] mb-[3rem]">Account Deletion</h2>
-      <p className="text-[1.6rem] mb-[2rem]">
+      <h2 className="text-[clamp(2rem,3vw,2.5rem)] mb-[3rem]">
+        Account Deletion
+      </h2>
+      <p className="text-[clamp(1.6rem,3vw,2rem)] mb-[2rem]">
         If you wish to delete your account, click the button below. <br />{" "}
         <span className="text-orange-400">This is irreversible!</span>
       </p>

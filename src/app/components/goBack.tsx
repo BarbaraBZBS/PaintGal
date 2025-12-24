@@ -23,7 +23,8 @@ export default function GoBack() {
   return (
     <motion.button
     whileTap={{ scale: 0.8 }}
-    className="cursor-pointer p-[1rem] w-[5rem] h-[5.4rem] bg-pgblue text-white border-pgnavy border-[0.3rem] rounded-lg transition-colors mx-[3rem] hover:bg-pgyellow hover:border-pgnavy hover:border-[0.35rem] hover:text-black" onClick={handleBackPage}>
+    title="Back"
+    className="cursor-pointer md:p-[1rem] md:w-[5rem] md:h-[5.4rem] bg-pgblue text-white border-pgnavy border-[0.3rem] rounded-lg transition-colors md:mx-[3rem] hover:bg-pgyellow hover:border-pgnavy hover:border-[0.35rem] hover:text-black" onClick={handleBackPage}>
                 {element}
     </motion.button>
   );

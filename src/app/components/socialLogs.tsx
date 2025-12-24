@@ -5,7 +5,7 @@ export default function SocialLogs() {
   return (
     <form
       action={doSocialLogin}
-      className="grid grid-cols-[1fr_1fr] mt-[3rem] gap-[1rem]"
+      className="grid grid-cols-[1fr_1fr] mt-[3rem] gap-[1rem] text-[clamp(1.2rem,3vw,1.6rem)]"
     >
       <button
         type="submit"

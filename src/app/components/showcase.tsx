@@ -37,7 +37,7 @@ export default async function Showcase() {
     <div className="grid justify-items-center my-[3rem]">
       {/* if no data */}
       {paintings && paintings.length == 0 && (
-        <p className="h-[5rem] grid place-items-center text-[1.6rem]">
+        <p className="h-[60vh] grid place-content-center place-self-center text-[1.6rem]">
           Nothing in store
         </p>
       )}

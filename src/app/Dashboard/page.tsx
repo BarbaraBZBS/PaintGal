@@ -1,23 +1,17 @@
 import Link from "next/link";
-import GoBack from "@src/app/components/goBack";
 
 //ADMIN
 
 
 export default function ManagePaintings() {
   return (
-    <>
-      <main className="">
-        <div className="grid justify-items-end mb-[4rem]">
-          <GoBack />
-        </div>
-        <div className="grid h-[60vh] place-content-center text-[2rem] text-pgnavy dark:text-pggreen gap-[3rem]">
+      <main className="grid w-screen">
+        <div className="grid h-[45rem] place-content-center text-[clamp(2rem,4vw,2.5rem)] text-pgnavy dark:text-pggreen gap-[3rem]">
           <Link href="/Paintings">Paintings List</Link>
           <Link href="/Gallery">Add Painting</Link>
           <Link href="/Update">Update Painting</Link>
           <Link href="/Delete">Delete Painting</Link>
         </div>
       </main>
-    </>
   );
 }

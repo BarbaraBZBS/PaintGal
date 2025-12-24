@@ -38,6 +38,13 @@ body {
   direction: rtl;
 }
 
+@media (min-width: 1024px) {
+  .el-rtl {
+    direction: ltr;
+    text-align: center;
+  }
+}
+
 @layer base {
   /* base font size in percentage then change font-size and some other values to rem for browser font-size change to work */
   /* 1rem = 16px and 100% = 16px so 62.5% = 10px, and with 62.5% (10px) then 2rem = 20px */
@@ -69,7 +76,7 @@ utilities text-balance {
     --tertiary: #c9ffdd;
     --quaternary: #ffc4d8;
   }*/
-
+  
   --drop-shadow-3xl: 0 35px 35px rgba(0, 0, 0, 0.25);
   --drop-shadow-4xl: 0 35px 35px rgba(0, 0, 0, 0.25),
     0 45px 65px rgba(0, 0, 0, 0.15);

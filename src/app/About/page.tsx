@@ -1,7 +1,9 @@
 export default function About() {
   return (
-    <main className="grid place-content-center text-[1.5rem] p-[4rem] mb-[2rem]">
-      <h1 className="text-[2.5rem] mb-[3rem]">About PaintGal</h1>
+    <main className="grid place-content-center text-[clamp(1.5rem,3vw,1.8rem)] p-[4rem] mb-[2rem]">
+      <h1 className="text-[clamp(2.5rem,3vw,3rem)] mb-[3rem]">
+        About PaintGal
+      </h1>
       <p className="pt-[2rem]">
         The painting shop offers a variety of artworks from local and
         international artists.

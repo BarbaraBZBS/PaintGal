@@ -17,9 +17,13 @@ export default function DeletePainting({...painting}) {
   }
   
     return (
-        <div className="grid justify-items-center m-[4rem]">
-            <button className="cursor-pointer h-[8rem] w-[15rem] p-[1rem] bg-pgblue text-white border-pgnavy border-[0.3rem] rounded-lg transition-colors mx-[3rem] hover:bg-pgyellow hover:border-pgnavy hover:border-[0.35rem] hover:text-black" onClick={handleClick}>Confirm</button>
-            
-        </div>
-    )
+      <div className="grid justify-items-center m-[4rem] text-[clamp(1.7rem,3vw,2rem)]">
+        <button
+          className="cursor-pointer h-[8rem] w-[15rem] p-[1rem] bg-pgblue text-white border-pgnavy border-[0.3rem] rounded-lg transition-colors mx-[3rem] hover:bg-pgyellow hover:border-pgnavy hover:border-[0.35rem] hover:text-black"
+          onClick={handleClick}
+        >
+          Confirm
+        </button>
+      </div>
+    );
 }

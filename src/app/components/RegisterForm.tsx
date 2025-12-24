@@ -66,16 +66,16 @@ export default function RegisterForm() {
   };
 
   return (
-    <main>
-      <div className="grid place-items-center h-screen">
+    <main className="grid place-self-center min-h-[62rem]">
+      <div className="grid place-items-center place-self-center">
         <div className="p-[3rem] shadow-card dark:shadow-indigo-400 border-t-8 rounded-3xl border-pgblue">
-          <h1 className="text-center text-[2rem] m-[2rem] font-bold">
+          <h1 className="text-center text-[clamp(2rem,3vw,2.3rem)] m-[2rem] font-bold">
             Create an Account
           </h1>
 
           <form
             action=""
-            className="grid gap-3 text-[1.5rem]"
+            className="grid gap-3 text-[clamp(1.5rem,3vw,1.7rem)]"
             id="newUserForm"
             onSubmit={onSubmit}
           >
@@ -170,7 +170,7 @@ export default function RegisterForm() {
             )}
             <Link
               href="/SignIn"
-              className="place-self-end text-[1.5rem] "
+              className="place-self-end text-[clamp(1.5rem,3vw,1.7rem)]"
             >
               Already have an account?{" "}
               <span className="underline decoration-2 decoration-indigo-500 mb-[2rem]">
@@ -178,7 +178,7 @@ export default function RegisterForm() {
               </span>
             </Link>
           </form>
-            <SocialLogs />
+          <SocialLogs />
         </div>
       </div>
     </main>
